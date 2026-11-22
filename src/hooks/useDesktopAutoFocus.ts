@@ -14,7 +14,6 @@ export function useDesktopAutoFocus(): boolean {
     if (typeof window === 'undefined' || !window.matchMedia) return;
     const mq = window.matchMedia('(pointer: fine)');
     const handleChange = (e: MediaQueryListEvent) => setIsDesktopPointer(e.matches);
-    setIsDesktopPointer(mq.matches);
     mq.addEventListener('change', handleChange);
     return () => mq.removeEventListener('change', handleChange);
   }, []);

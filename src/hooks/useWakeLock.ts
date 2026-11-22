@@ -36,11 +36,18 @@ export function useWakeLock(enabled: boolean) {
   }, [isSupported, enabled]);
 
   useEffect(() => {
+    let cancelled = false;
     if (!enabled) {
-      void release();
-      return;
+      queueMicrotask(() => {
+        if (!cancelled) void release();
+      });
+      return () => {
+        cancelled = true;
+      };
     }
-    void acquire();
+    queueMicrotask(() => {
+      if (!cancelled) void acquire();
+    });
 
     const handleVisibility = () => {
       if (document.visibilityState === 'visible' && enabled) {
@@ -49,6 +56,7 @@ export function useWakeLock(enabled: boolean) {
     };
     document.addEventListener('visibilitychange', handleVisibility);
     return () => {
+      cancelled = true;
       document.removeEventListener('visibilitychange', handleVisibility);
       void release();
     };

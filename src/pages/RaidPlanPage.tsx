@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   Radar, Plus, Check, Trash2, PackageCheck, Minus, LayoutGrid, List as ListIcon, Pencil, X
 } from 'lucide-react';
@@ -7,7 +7,7 @@ import { useAppStore } from '@/store';
 import { useTranslation, getItemName } from '@/i18n';
 import { PageLayout } from '@/components/PageLayout';
 import { Drawer } from '@/components/Drawer';
-import { useSetFloatingNavDock } from '@/context/FloatingNavDockContext';
+import { useSetFloatingNavDock } from '@/hooks/useFloatingNavDock';
 import { ItemPicker } from '@/components/ItemPicker';
 import { ItemQuantityModal } from '@/components/ItemQuantityModal';
 import { ActionCheckbox } from '@/components/ActionCheckbox';
@@ -86,6 +86,8 @@ export const RaidPlanPage = ({ action, onActionHandled }: RaidPlanPageProps = {}
     [workbenches, projects, sharedCustomLists, customLists, activeExpedition],
   );
 
+  const [renderNow] = useState(() => Date.now());
+
   const totalMaterials = useMemo(
     () => getTotalRequiredMaterialsPure(
       allLists,
@@ -93,10 +95,10 @@ export const RaidPlanPage = ({ action, onActionHandled }: RaidPlanPageProps = {}
       currentLevels,
       targetLevels,
       undefined,
-      Date.now(),
+      renderNow,
       checkedActions,
     ),
-    [allLists, activeModules, currentLevels, targetLevels, checkedActions],
+    [allLists, activeModules, currentLevels, targetLevels, renderNow, checkedActions],
   );
 
   // Stato locale
@@ -118,10 +120,16 @@ export const RaidPlanPage = ({ action, onActionHandled }: RaidPlanPageProps = {}
 
   // Ascolta le azioni contestuali provenienti dal FloatingNav (...)
   useEffect(() => {
-    if (action) {
+    if (!action) return;
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (cancelled) return;
       setModalType(action);
       onActionHandled?.();
-    }
+    });
+    return () => {
+      cancelled = true;
+    };
   }, [action, onActionHandled]);
 
   const actions = raidPlan.actions;
@@ -138,7 +146,7 @@ export const RaidPlanPage = ({ action, onActionHandled }: RaidPlanPageProps = {}
 
   const selectedCount = selectedActionIds.size + selectedItemIds.size;
 
-  const handleBatchDelete = () => {
+  const handleBatchDelete = useCallback(() => {
     for (const id of selectedActionIds) {
       removeRaidAction(id);
     }
@@ -153,7 +161,7 @@ export const RaidPlanPage = ({ action, onActionHandled }: RaidPlanPageProps = {}
     ) {
       setIsEditingRequirements(false);
     }
-  };
+  }, [actions, items, removeRaidAction, removeRaidItem, selectedActionIds, selectedItemIds]);
 
   const dockConfig = useMemo(() => {
     if (isEditingRequirements) {
@@ -226,8 +234,7 @@ export const RaidPlanPage = ({ action, onActionHandled }: RaidPlanPageProps = {}
     canApplyToStash,
     isEmpty,
     selectedCount,
-    selectedActionIds,
-    selectedItemIds,
+    handleBatchDelete,
   ]);
 
   useSetFloatingNavDock(dockConfig);

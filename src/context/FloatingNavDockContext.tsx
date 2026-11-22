@@ -1,37 +1,14 @@
-import { createContext, useContext, useState, useEffect, type ReactNode, type Ref } from 'react';
+import { useState, type ReactNode } from 'react';
+import {
+  FloatingNavDockContext,
+  type FloatingNavDockConfig,
+} from '@/context/floatingNavDockContextValue';
 
-export type DockPrimaryAction = {
-  label: string;
-  icon?: ReactNode;
-  onClick: () => void;
-  disabled?: boolean;
-  variant?: 'primary' | 'secondary' | 'danger';
-};
-
-export type DockSecondaryAction = {
-  id: string;
-  icon: ReactNode;
-  label: string;
-  onClick: () => void;
-  disabled?: boolean;
-  variant?: 'default' | 'primary' | 'danger';
-  buttonRef?: Ref<HTMLButtonElement>;
-};
-
-export type FloatingNavDockConfig = {
-  primary?: DockPrimaryAction;
-  secondary?: DockSecondaryAction[];
-};
-
-type FloatingNavDockContextValue = {
-  dock: FloatingNavDockConfig | null;
-  setDock: (dock: FloatingNavDockConfig | null) => void;
-};
-
-const FloatingNavDockContext = createContext<FloatingNavDockContextValue>({
-  dock: null,
-  setDock: () => {},
-});
+export type {
+  DockPrimaryAction,
+  DockSecondaryAction,
+  FloatingNavDockConfig,
+} from '@/context/floatingNavDockContextValue';
 
 export const FloatingNavDockProvider = ({ children }: { children: ReactNode }) => {
   const [dock, setDock] = useState<FloatingNavDockConfig | null>(null);
@@ -40,15 +17,4 @@ export const FloatingNavDockProvider = ({ children }: { children: ReactNode }) =
       {children}
     </FloatingNavDockContext.Provider>
   );
-};
-
-export const useFloatingNavDock = () => useContext(FloatingNavDockContext).dock;
-
-export const useSetFloatingNavDock = (config: FloatingNavDockConfig | null) => {
-  const { setDock } = useContext(FloatingNavDockContext);
-
-  useEffect(() => {
-    setDock(config);
-    return () => setDock(null);
-  }, [config, setDock]);
 };

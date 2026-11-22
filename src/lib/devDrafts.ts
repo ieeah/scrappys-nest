@@ -7,12 +7,12 @@ import { hasNavDraftChanges } from '@/lib/navTree';
 import { hasCustomFeatureFlags } from '@/lib/featureFlags';
 import { isCustomItemsModified } from '@/lib/customItems';
 
-function flattenObject(obj: Record<string, any>, prefix = ''): Record<string, string> {
+function flattenObject(obj: Record<string, unknown>, prefix = ''): Record<string, string> {
   const result: Record<string, string> = {};
   for (const [key, value] of Object.entries(obj)) {
     const fullPath = prefix ? `${prefix}.${key}` : key;
     if (value && typeof value === 'object' && !Array.isArray(value)) {
-      Object.assign(result, flattenObject(value, fullPath));
+      Object.assign(result, flattenObject(value as Record<string, unknown>, fullPath));
     } else if (typeof value === 'string') {
       result[fullPath] = value;
     }
@@ -36,7 +36,8 @@ export function hasUnsavedDevChanges(): boolean {
     if (listsDraft) {
       const parsed = JSON.parse(listsDraft);
       const initialWb = JSON.stringify(defaultWorkbenchesData.items || []);
-      const initialExp = JSON.stringify((defaultExpeditionsData as any).lists || (defaultExpeditionsData as any).items || []);
+      const expRaw = defaultExpeditionsData as { lists?: unknown; items?: unknown };
+      const initialExp = JSON.stringify(expRaw.lists || expRaw.items || []);
       if (parsed.workbench && JSON.stringify(parsed.workbench) !== initialWb) return true;
       if (parsed.expedition && JSON.stringify(parsed.expedition) !== initialExp) return true;
       if (parsed.project && Array.isArray(parsed.project) && parsed.project.length > 0) return true;

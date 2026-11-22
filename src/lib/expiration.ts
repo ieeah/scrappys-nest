@@ -31,7 +31,7 @@ export function formatTimeRemaining(
     };
   }
 
-  let text = '';
+  let text: string;
   const dayUnit = translate(language, 'common.dayShort') || 'd';
   if (remaining.days >= 1) {
     text = `${remaining.days}${dayUnit} ${remaining.hours}h`;

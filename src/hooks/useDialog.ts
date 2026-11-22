@@ -80,7 +80,7 @@ export function useDialog(onClose: () => void) {
       if (i >= 0) stack.splice(i, 1);
       previouslyFocused?.focus?.();
     };
-  }, []);
+  }, [desktopAutoFocus]);
 
   return panelRef;
 }

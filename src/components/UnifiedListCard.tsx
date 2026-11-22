@@ -241,7 +241,7 @@ export const UnifiedListCard = ({
       window.removeEventListener('scroll', handleScrollOrResize);
       window.removeEventListener('resize', handleScrollOrResize);
     };
-  }, [menuOpen, updateMenuPosition]);
+  }, [menuOpen, updateMenuPosition, closeMenu]);
 
   const hasConflict = (level: number) => hasDeductionConflict(list, current, level, inventory, otherNeeds, checkedActions);
 

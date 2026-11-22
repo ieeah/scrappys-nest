@@ -48,7 +48,8 @@ export function computeEffectiveWorkbenches(): List[] {
 }
 
 export function computeEffectiveExpeditions(): ExpeditionList[] {
-  let list = (((expeditionsData as any).lists || (expeditionsData as any).items || []) as ExpeditionList[]);
+  const expRaw = expeditionsData as unknown as { lists?: ExpeditionList[]; items?: ExpeditionList[] };
+  let list = expRaw.lists || expRaw.items || [];
   if (import.meta.env.DEV) {
     try {
       const draft = localStorage.getItem('arc_benches_dev_lists_draft_v1');
@@ -102,7 +103,8 @@ export const passes = computeEffectivePasses();
 export function computeEffectiveItemsInfo(): Record<string, ItemInfo> {
   const result: Record<string, ItemInfo> = { ...(itemsData as Record<string, ItemInfo>) };
   if (import.meta.env.DEV) applyCustomItemsDraft(result);
-  let activeOverrides: Record<string, any> = (itemsOverridesData as Record<string, any>) || {};
+  let activeOverrides: Record<string, Partial<ItemInfo> & { hidden?: boolean }> =
+    (itemsOverridesData as Record<string, Partial<ItemInfo> & { hidden?: boolean }>) || {};
 
   if (import.meta.env.DEV) {
     try {

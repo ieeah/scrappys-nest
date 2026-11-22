@@ -1,14 +1,7 @@
 import type { ReactNode } from 'react';
 import { AppFooter } from '@/components/AppFooter';
 import { cn } from '@/lib/cn';
-
-export type PageLayoutWidth = 'default' | 'wide' | 'full';
-
-export const PAGE_LAYOUT_WIDTH_CLASSES: Record<PageLayoutWidth, string> = {
-  default: 'max-w-md md:max-w-3xl',
-  wide: 'max-w-5xl',
-  full: 'w-full',
-};
+import { PAGE_LAYOUT_WIDTH_CLASSES, type PageLayoutWidth } from '@/components/pageLayoutWidth';
 
 export type PageLayoutProps = {
   /** Titolo testuale standard (utilizzato se headerSlot non è specificato) */

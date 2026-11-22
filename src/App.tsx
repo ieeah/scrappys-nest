@@ -1,7 +1,8 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { Download, EyeOff, Loader2, Plus, RotateCcw, Upload, Trash2, Sun } from 'lucide-react';
 import { ThemeProvider } from '@/context/ThemeProvider';
-import { FloatingNavDockProvider, useFloatingNavDock } from '@/context/FloatingNavDockContext';
+import { FloatingNavDockProvider } from '@/context/FloatingNavDockContext';
+import { useFloatingNavDock } from '@/hooks/useFloatingNavDock';
 import { useWakeLock } from '@/hooks/useWakeLock';
 import { FloatingNav } from '@/components/FloatingNav';
 import { MorphingFloatingNav } from '@/components/MorphingFloatingNav';

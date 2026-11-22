@@ -87,10 +87,7 @@ export const FloatingNav = ({
   const pillRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!menuOpen) {
-      setMenuHeight(undefined);
-      return;
-    }
+    if (!menuOpen) return;
     const targetEl = drillCategory !== null ? subPaneRef.current : rootPaneRef.current;
     if (targetEl) {
       setMenuHeight(targetEl.scrollHeight);
@@ -298,7 +295,7 @@ export const FloatingNav = ({
                 <div
                   className="relative overflow-hidden w-full transition-[height] duration-250 ease-out"
                   style={{
-                    height: menuHeight !== undefined ? `${menuHeight}px` : 'auto',
+                    height: menuOpen && menuHeight !== undefined ? `${menuHeight}px` : 'auto',
                     maxHeight: '60dvh',
                   }}
                 >

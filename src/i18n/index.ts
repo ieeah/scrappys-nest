@@ -9,22 +9,23 @@ import { SUPPORTED_LANGUAGES, type AppLanguage } from './types';
 export * from './types';
 
 function computeEffectiveLocales(): Record<string, typeof it> {
-  const result: Record<string, any> = {
-    it: JSON.parse(JSON.stringify(it)),
-    en: JSON.parse(JSON.stringify(en)),
+  const result: Record<string, Record<string, unknown>> = {
+    it: JSON.parse(JSON.stringify(it)) as Record<string, unknown>,
+    en: JSON.parse(JSON.stringify(en)) as Record<string, unknown>,
   };
 
   if (import.meta.env.DEV) {
     try {
       const itDraft = localStorage.getItem('dev_i18n_it_draft');
       if (itDraft) {
-        const flat = JSON.parse(itDraft);
+        const flat = JSON.parse(itDraft) as Record<string, unknown>;
         for (const [path, val] of Object.entries(flat)) {
           const parts = path.split('.');
-          let cur: any = result.it;
+          let cur: Record<string, unknown> = result.it;
           for (let i = 0; i < parts.length - 1; i++) {
-            if (!cur[parts[i]] || typeof cur[parts[i]] !== 'object') cur[parts[i]] = {};
-            cur = cur[parts[i]];
+            const next = cur[parts[i]];
+            if (!next || typeof next !== 'object') cur[parts[i]] = {};
+            cur = cur[parts[i]] as Record<string, unknown>;
           }
           cur[parts[parts.length - 1]] = val;
         }
@@ -32,13 +33,14 @@ function computeEffectiveLocales(): Record<string, typeof it> {
 
       const enDraft = localStorage.getItem('dev_i18n_en_draft');
       if (enDraft) {
-        const flat = JSON.parse(enDraft);
+        const flat = JSON.parse(enDraft) as Record<string, unknown>;
         for (const [path, val] of Object.entries(flat)) {
           const parts = path.split('.');
-          let cur: any = result.en;
+          let cur: Record<string, unknown> = result.en;
           for (let i = 0; i < parts.length - 1; i++) {
-            if (!cur[parts[i]] || typeof cur[parts[i]] !== 'object') cur[parts[i]] = {};
-            cur = cur[parts[i]];
+            const next = cur[parts[i]];
+            if (!next || typeof next !== 'object') cur[parts[i]] = {};
+            cur = cur[parts[i]] as Record<string, unknown>;
           }
           cur[parts[parts.length - 1]] = val;
         }
@@ -48,7 +50,7 @@ function computeEffectiveLocales(): Record<string, typeof it> {
     }
   }
 
-  return result;
+  return result as Record<string, typeof it>;
 }
 
 const LOCALES: Record<string, typeof it> = computeEffectiveLocales();
@@ -68,17 +70,17 @@ export function translate(
 ): string {
   const dict = LOCALES[lang] || LOCALES.en || LOCALES.it;
   const parts = path.split('.');
-  let current: any = dict;
+  let current: unknown = dict;
 
   for (const part of parts) {
     if (current && typeof current === 'object' && part in current) {
-      current = current[part];
+      current = (current as Record<string, unknown>)[part];
     } else {
       // Fallback to English, then Italian
-      let fallbackCurrent: any = LOCALES.en || LOCALES.it;
+      let fallbackCurrent: unknown = LOCALES.en || LOCALES.it;
       for (const fPart of parts) {
         if (fallbackCurrent && typeof fallbackCurrent === 'object' && fPart in fallbackCurrent) {
-          fallbackCurrent = fallbackCurrent[fPart];
+          fallbackCurrent = (fallbackCurrent as Record<string, unknown>)[fPart];
         } else {
           fallbackCurrent = undefined;
           break;

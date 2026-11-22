@@ -76,8 +76,6 @@ export const SkillTreeCanvas: React.FC<SkillTreeCanvasProps> = ({
   // Synchronize mutable refs for zero-latency direct DOM updates
   const panRef = useRef(pan);
   const zoomRef = useRef(zoom);
-  panRef.current = pan;
-  zoomRef.current = zoom;
 
   // Direct 2D transform update on the SVG node (crisp vector rendering without 3D texture compression blur)
   const applyTransformDirect = (x: number, y: number, z: number) => {
@@ -86,8 +84,10 @@ export const SkillTreeCanvas: React.FC<SkillTreeCanvasProps> = ({
     }
   };
 
-  // Sync direct transform when React state changes (e.g. from buttons)
+  // Sync direct transform and refs when React state changes (e.g. from buttons)
   useEffect(() => {
+    panRef.current = pan;
+    zoomRef.current = zoom;
     applyTransformDirect(pan.x, pan.y, zoom);
   }, [pan, zoom]);
 

@@ -82,27 +82,21 @@ export const MorphingFloatingNav = ({
   }, [navStack, navTree]);
 
   // Calcolo dinamico dell'altezza del container per il morphing elastico
-  const [dynamicHeight, setDynamicHeight] = useState<number>(64);
+  const [contextHeight, setContextHeight] = useState<number>(260);
 
   useEffect(() => {
-    if (mode === 'idle') {
-      setDynamicHeight(64);
-      return;
-    }
-
-    if (mode === 'nav') {
-      const itemCount = currentItems.length;
-      const bodyH = Math.min(350, itemCount * 44 + 10);
-      const total = 44 + bodyH + 20;
-      const maxAllowed = typeof window !== 'undefined' ? window.innerHeight * 0.75 : 500;
-      setDynamicHeight(Math.min(maxAllowed, total));
-    } else if (mode === 'context') {
-      const headerH = headerRef.current?.offsetHeight ?? 44;
-      const bodyH = contextPaneRef.current?.scrollHeight ?? 200;
-      const total = headerH + bodyH + 22;
-      const maxAllowed = typeof window !== 'undefined' ? window.innerHeight * 0.75 : 500;
-      setDynamicHeight(Math.min(maxAllowed, total));
-    }
+    if (mode !== 'context') return;
+    const headerH = headerRef.current?.offsetHeight ?? 44;
+    const bodyH = contextPaneRef.current?.scrollHeight ?? 200;
+    const total = headerH + bodyH + 22;
+    const maxAllowed = typeof window !== 'undefined' ? window.innerHeight * 0.75 : 500;
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (!cancelled) setContextHeight(Math.min(maxAllowed, total));
+    });
+    return () => {
+      cancelled = true;
+    };
   }, [mode, currentItems, navTree, contextActions]);
 
   // Cleanup automatico transizione slide a fine animazione
@@ -268,12 +262,17 @@ export const MorphingFloatingNav = ({
     };
   }, [hasDock, hasRaidElements, activePage, secondaryDockItems.length, isOpen]);
 
-  // Aggiorna dynamicHeight quando siamo in idle
-  useEffect(() => {
-    if (mode === 'idle') {
-      setDynamicHeight(idleSize.height);
+  const effectiveHeight = useMemo(() => {
+    if (mode === 'idle') return idleSize.height;
+    if (mode === 'nav') {
+      const itemCount = currentItems.length;
+      const bodyH = Math.min(350, itemCount * 44 + 10);
+      const total = 44 + bodyH + 20;
+      const maxAllowed = typeof window !== 'undefined' ? window.innerHeight * 0.75 : 500;
+      return Math.min(maxAllowed, total);
     }
-  }, [mode, idleSize.height]);
+    return contextHeight;
+  }, [mode, idleSize.height, currentItems.length, contextHeight]);
 
   const dockPrimaryEl = dock?.primary ? (
     <button
@@ -352,7 +351,7 @@ export const MorphingFloatingNav = ({
               transformOrigin: isAnchorRight ? 'bottom right' : 'bottom left',
               WebkitBackfaceVisibility: 'hidden',
               backfaceVisibility: 'hidden',
-              height: `${dynamicHeight}px`,
+              height: `${effectiveHeight}px`,
               width: isOpen ? '304px' : `${idleSize.width}px`,
               borderRadius: isOpen ? '26px' : `${Math.round(idleSize.height / 2)}px`,
             }}

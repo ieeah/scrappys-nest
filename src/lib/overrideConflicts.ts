@@ -38,7 +38,8 @@ export const conflictSignature = (c: OverrideConflict) => `${c.kind}|${JSON.stri
 
 /** Override senza il campo riservato `reviewed`, da usare ovunque l'override venga unito a un item. */
 export function stripReview<T extends OverrideEntry>(entry: T): Omit<T, typeof REVIEW_FIELD> {
-  const { [REVIEW_FIELD]: _reviewed, ...fields } = entry;
+  const fields = { ...entry };
+  delete fields[REVIEW_FIELD];
   return fields as Omit<T, typeof REVIEW_FIELD>;
 }
 
@@ -75,10 +76,12 @@ export function adoptUpstream(overrides: OverrideMap, conflicts: OverrideConflic
     }
     const entry = next[c.id];
     if (!entry || !(c.key in entry)) continue;
-    const { [c.key]: _removed, ...rest } = entry;
+    const rest: OverrideEntry = { ...entry };
+    delete rest[c.key];
     const reviewed = rest[REVIEW_FIELD] as ReviewMap | undefined;
     if (reviewed) {
-      const { [c.key]: _forgotten, ...otherReviews } = reviewed;
+      const otherReviews = { ...reviewed };
+      delete otherReviews[c.key];
       if (Object.keys(otherReviews).length === 0) delete rest[REVIEW_FIELD];
       else rest[REVIEW_FIELD] = otherReviews;
     }

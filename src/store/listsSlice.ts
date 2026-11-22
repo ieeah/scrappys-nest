@@ -85,9 +85,14 @@ export const createListsSlice: StateCreator<AppState, [], [], ListsSlice> = (set
     const isShared = s.sharedCustomLists.some(l => l.id === id);
     const filter = (lists: List[]) => lists.filter(l => l.id !== id);
 
-    const { [id]: _, ...currentLevels } = s.currentLevels;
-    const { [id]: __, ...targetLevels } = s.targetLevels;
-    const { [id]: ___, ...activeModules } = s.activeModules;
+    const omitKey = <T,>(record: Record<string, T>): Record<string, T> => {
+      const next = { ...record };
+      delete next[id];
+      return next;
+    };
+    const currentLevels = omitKey(s.currentLevels);
+    const targetLevels = omitKey(s.targetLevels);
+    const activeModules = omitKey(s.activeModules);
     const listOrder = s.listOrder.filter(listId => listId !== id);
 
     if (isShared) {

@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { PageLayout, PAGE_LAYOUT_WIDTH_CLASSES, type PageLayoutWidth } from './PageLayout';
+import { PageLayout } from './PageLayout';
+import { PAGE_LAYOUT_WIDTH_CLASSES, type PageLayoutWidth } from './pageLayoutWidth';
 
 describe('PageLayout component and utilities', () => {
   it('exports PageLayout as a React component function', () => {

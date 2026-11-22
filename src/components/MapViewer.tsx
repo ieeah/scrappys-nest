@@ -112,6 +112,7 @@ export const MapViewer = ({
 
   const [currentZoom, setCurrentZoom] = useState<number>(defaultZoom);
   const [viewportBounds, setViewportBounds] = useState<L.LatLngBounds | null>(null);
+  const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
 
@@ -187,6 +188,7 @@ export const MapViewer = ({
     markerGroupRef.current = markerGroup;
 
     mapInstanceRef.current = map;
+    setMapInstance(map);
     setCurrentZoom(map.getZoom());
     setViewportBounds(map.getBounds());
 
@@ -212,6 +214,7 @@ export const MapViewer = ({
       areaGroupRef.current?.clearLayers();
       map.remove();
       mapInstanceRef.current = null;
+      setMapInstance(null);
       tileLayerRef.current = null;
       markerGroupRef.current = null;
       nameplateGroupRef.current = null;
@@ -271,13 +274,13 @@ export const MapViewer = ({
 
   // Viewport Culling con buffer di tolleranza esterno (pad 0.45)
   const culledPois = useMemo(() => {
-    if (!mapInstanceRef.current || !viewportBounds) return filteredPois;
+    if (!mapInstance || !viewportBounds) return filteredPois;
     const padded = viewportBounds.pad(0.45);
     return filteredPois.filter(p => {
-      const latLng = mapInstanceRef.current!.unproject([p.coordinate[0], p.coordinate[1]], 3);
+      const latLng = mapInstance.unproject([p.coordinate[0], p.coordinate[1]], 3);
       return padded.contains(latLng);
     });
-  }, [filteredPois, viewportBounds]);
+  }, [filteredPois, viewportBounds, mapInstance]);
 
   // Zone Nameplates con LOD a 2 livelli:
   // Livello 1 (Major Nameplates, con icone loot): sempre visibili
@@ -396,7 +399,7 @@ export const MapViewer = ({
       const groupConfig = MACRO_GROUPS.find(g => g.id === macroGroup);
       const groupColor = groupConfig?.color || '#94a3b8';
 
-      let markerHtml = '';
+      let markerHtml: string;
       if (isQuest) {
         const showStepNumber = Boolean(questInfo && questInfo.isSequential && questInfo.totalSteps > 1);
         markerHtml = `

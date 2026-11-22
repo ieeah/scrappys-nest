@@ -73,7 +73,7 @@ export const createExpeditionsSlice: StateCreator<AppState, [], [], ExpeditionsS
     const currentCompleted = s.completedExpeditionsCount;
     const currentSP = s.earnedPermanentSkillPoints;
 
-    let spGain = 0;
+    let spGain: number;
     if (gainOverride !== undefined) {
       spGain = Math.max(0, Math.floor(gainOverride));
     } else {

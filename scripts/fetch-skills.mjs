@@ -3,10 +3,10 @@
  * con localizzazioni complete IT/EN, topologia e icone CDN.
  *
  * Usage:
- *   cd scripts && node fetch-skills.mjs [--skip-images]
+ *   cd scripts && node fetch-skills.mjs [--refresh] [--skip-images]
  */
 
-import { writeFileSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -15,8 +15,9 @@ const ROOT = join(__dirname, '..');
 const DATA_DIR = join(ROOT, 'src', 'data');
 const SKILLS_JSON = join(DATA_DIR, 'skills.json');
 const ICONS_DIR = join(ROOT, 'public', 'icons', 'skills');
+const RAW_CACHE = join(__dirname, 'skills-raw.json');
 
-async function main() {
+async function fetchRawSkills() {
   console.log('Fetching live Skill Tree from arctracker.io...');
   const res = await fetch('https://arctracker.io/skill-tree', {
     headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' },
@@ -29,7 +30,6 @@ async function main() {
   );
   console.log(`Searching across ${scriptMatches.length} chunks...`);
 
-  let rawSkills = null;
   for (const s of scriptMatches) {
     const cRes = await fetch(`https://arctracker.io${s}`, {
       headers: { 'User-Agent': 'Mozilla/5.0' },
@@ -43,14 +43,29 @@ async function main() {
         const endIdx = cText.indexOf("')", quoteStart);
         const rawJsString = cText.slice(quoteStart, endIdx + 1);
         const unescaped = eval(rawJsString);
-        rawSkills = JSON.parse(unescaped);
+        const rawSkills = JSON.parse(unescaped);
         console.log(`Found live skills dictionary with ${Object.keys(rawSkills).length} skills!`);
-        break;
+        return rawSkills;
       }
     }
   }
 
-  if (!rawSkills) throw new Error('Could not find live skills dictionary in chunks');
+  throw new Error('Could not find live skills dictionary in chunks');
+}
+
+async function main() {
+  const refresh = process.argv.includes('--refresh');
+  let rawSkills;
+
+  if (!refresh && existsSync(RAW_CACHE)) {
+    rawSkills = JSON.parse(readFileSync(RAW_CACHE, 'utf-8'));
+    console.log(`Using cached skills (${Object.keys(rawSkills).length}) from ${RAW_CACHE}`);
+    console.log('Pass --refresh to re-fetch from arctracker.io.');
+  } else {
+    rawSkills = await fetchRawSkills();
+    writeFileSync(RAW_CACHE, JSON.stringify(rawSkills, null, 2), 'utf-8');
+    console.log(`Cached raw skills to ${RAW_CACHE}`);
+  }
 
   const normalized = Object.values(rawSkills).map((s) => ({
     id: s.id,

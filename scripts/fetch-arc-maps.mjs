@@ -12,13 +12,15 @@
  *    - lower -> scripts/data/maps/stella-montis-l1/
  */
 
-import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, '..');
+const RAW_CACHE = join(__dirname, 'maps-pois-raw.json');
+const POI_OVERRIDES_PATH = join(ROOT, 'src', 'data', 'map-pois-overrides.json');
 
 const MAP_DEFINITIONS = [
   { id: 'dam', name: 'Dam Battlegrounds', badge: 'Swamp & Dam' },
@@ -83,7 +85,7 @@ async function pMap(items, mapper, concurrency = 6) {
   return results;
 }
 
-async function downloadTilesForLayer(remoteLayerName, targetFolder) {
+async function downloadTilesForLayer(remoteLayerName, targetFolder, refresh = false) {
   const targetDir = join(ROOT, 'scripts', 'data', 'maps', targetFolder);
   const tileTasks = [];
 
@@ -101,12 +103,18 @@ async function downloadTilesForLayer(remoteLayerName, targetFolder) {
   console.log(`\n⬇️  Scaricamento di ${tileTasks.length} tile per ${remoteLayerName} -> ${targetFolder}...`);
 
   let completed = 0;
+  let skipped = 0;
   await pMap(
     tileTasks,
     async ({ z, x, y }) => {
       const tileUrl = `https://arcraidersmaps.app/static/maps/v2/stella-montis/layers/${remoteLayerName}/tiles/${z}/${x}/${y}.webp`;
       const outDir = join(targetDir, String(z), String(x));
       const outFile = join(outDir, `${y}.webp`);
+
+      if (!refresh && existsSync(outFile)) {
+        skipped++;
+        return;
+      }
 
       mkdirSync(outDir, { recursive: true });
 
@@ -122,14 +130,42 @@ async function downloadTilesForLayer(remoteLayerName, targetFolder) {
     8
   );
 
-  console.log(`  ✓ Completati ${completed}/${tileTasks.length} tile in ${targetFolder}`);
+  console.log(`  ✓ Completati ${completed}/${tileTasks.length} tile in ${targetFolder} (${skipped} da cache)`);
 }
 
-async function main() {
-  console.log('🚀 Avvio sincronizzazione mappe da arcraidersmaps.app...');
+function applyPoiOverrides(pois, poiOverrides) {
+  if (!poiOverrides || typeof poiOverrides !== 'object') return pois;
+  const hiddenSet = new Set(Array.isArray(poiOverrides.hidden) ? poiOverrides.hidden : []);
+  const overridesMap = poiOverrides.overrides && typeof poiOverrides.overrides === 'object' ? poiOverrides.overrides : {};
+  const addedList = Array.isArray(poiOverrides.added) ? poiOverrides.added : [];
 
-  const allPois = [];
+  const filtered = [];
+  const seenIds = new Set();
+  for (const poi of pois) {
+    if (hiddenSet.has(poi.id)) continue;
+    const patch = overridesMap[poi.id];
+    const merged = patch && typeof patch === 'object' ? { ...poi, ...patch, id: poi.id } : poi;
+    filtered.push(merged);
+    seenIds.add(merged.id);
+  }
 
+  for (const extra of addedList) {
+    if (!extra?.id || hiddenSet.has(extra.id) || seenIds.has(extra.id)) continue;
+    filtered.push(extra);
+    seenIds.add(extra.id);
+  }
+
+  return filtered;
+}
+
+async function loadRawPoisByMap(refresh) {
+  if (!refresh && existsSync(RAW_CACHE)) {
+    const cached = JSON.parse(readFileSync(RAW_CACHE, 'utf-8'));
+    console.log(`📦 Uso cache locale POI da ${RAW_CACHE} (passa --refresh per riscaricare).`);
+    return cached;
+  }
+
+  const rawByMap = {};
   for (const def of MAP_DEFINITIONS) {
     const url = `https://api.arcraidersmaps.app/locations?mapId=${def.id}`;
     console.log(`\n📥 Fetching POIs per "${def.name}" (${def.id})...`);
@@ -139,9 +175,26 @@ async function main() {
 
     if (!Array.isArray(rawLocations)) {
       console.warn(`  ⚠️ Risposta non valida per ${def.id}:`, rawLocations);
+      rawByMap[def.id] = [];
       continue;
     }
+    rawByMap[def.id] = rawLocations;
+  }
 
+  writeFileSync(RAW_CACHE, JSON.stringify(rawByMap, null, 2), 'utf-8');
+  console.log(`💾 Salvata cache raw POI in ${RAW_CACHE}`);
+  return rawByMap;
+}
+
+async function main() {
+  const refresh = process.argv.includes('--refresh');
+  console.log(`🚀 Avvio sincronizzazione mappe da arcraidersmaps.app (${refresh ? 'NETWORK REFRESH' : 'CACHE LOCALE'})...`);
+
+  const rawByMap = await loadRawPoisByMap(refresh);
+  const allPois = [];
+
+  for (const def of MAP_DEFINITIONS) {
+    const rawLocations = rawByMap[def.id] ?? [];
     let mapCount = 0;
     for (const loc of rawLocations) {
       const layer = (def.id === 'pendola-pass' && loc.layer === 'surface')
@@ -166,20 +219,34 @@ async function main() {
     console.log(`  ✓ Estratti ${mapCount} POI per ${def.name}`);
   }
 
+  let finalPois = allPois;
+  if (existsSync(POI_OVERRIDES_PATH)) {
+    try {
+      const poiOverrides = JSON.parse(readFileSync(POI_OVERRIDES_PATH, 'utf-8'));
+      finalPois = applyPoiOverrides(allPois, poiOverrides);
+      const delta = finalPois.length - allPois.length;
+      if (delta !== 0 || Object.keys(poiOverrides.overrides ?? {}).length > 0) {
+        console.log(`✔ Applicati override POI da ${POI_OVERRIDES_PATH} (${finalPois.length} POI finali)`);
+      }
+    } catch (err) {
+      console.warn(`⚠️ Impossibile leggere ${POI_OVERRIDES_PATH}: ${err.message}`);
+    }
+  }
+
   // Salvataggio src/data/map-pois.json
   const poisOutputFile = join(ROOT, 'src', 'data', 'map-pois.json');
   const poisPayload = {
     _meta: {
-      totalPois: allPois.length,
+      totalPois: finalPois.length,
       extractedAt: new Date().toISOString().split('T')[0],
       source: 'arcraidersmaps.app',
     },
-    pois: allPois,
+    pois: finalPois,
   };
   writeFileSync(poisOutputFile, JSON.stringify(poisPayload, null, 2), 'utf-8');
-  console.log(`\n✔ Salvati ${allPois.length} POI in: ${poisOutputFile}`);
+  console.log(`\n✔ Salvati ${finalPois.length} POI in: ${poisOutputFile}`);
 
-  // Salvataggio src/data/maps.json
+  // Salvataggio src/data/maps.json (senza totalPois per M-02)
   const mapsOutputFile = join(ROOT, 'src', 'data', 'maps.json');
   const mapsPayload = {
     bounds: [0, 0, 4096, 4096],
@@ -188,7 +255,6 @@ async function main() {
     maxZoom: 5,
     maps: MAP_DEFINITIONS.map(def => {
       const floors = getMapFloors(def.id);
-      const mapPoisCount = allPois.filter(p => p.mapId === def.id).length;
 
       return {
         id: def.id,
@@ -200,7 +266,6 @@ async function main() {
         minZoom: 1,
         maxZoom: 5,
         floors,
-        totalPois: mapPoisCount,
       };
     }),
   };
@@ -208,8 +273,8 @@ async function main() {
   console.log(`✔ Aggiornato catalogo mappe in: ${mapsOutputFile}`);
 
   // Download dei tile per Stella Montis (upper e lower)
-  await downloadTilesForLayer('stella-montis-upper', 'stella-montis-l2');
-  await downloadTilesForLayer('stella-montis-lower', 'stella-montis-l1');
+  await downloadTilesForLayer('stella-montis-upper', 'stella-montis-l2', refresh);
+  await downloadTilesForLayer('stella-montis-lower', 'stella-montis-l1', refresh);
 
   console.log('\n🎉 Sincronizzazione mappe arcraidersmaps.app completata con successo!');
 }

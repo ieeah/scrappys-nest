@@ -438,14 +438,44 @@ async function main() {
   console.log(`Unlocks resolved: ${unlockedCount} items set with unlocks_item_id.`);
 
   const outPath = join(ROOT, 'src', 'data', 'items.json');
+  const existingTranslations = new Map();
+  if (existsSync(outPath)) {
+    try {
+      const existingItems = JSON.parse(readFileSync(outPath, 'utf-8'));
+      for (const [id, existing] of Object.entries(existingItems)) {
+        if (existing?.translations && Object.keys(existing.translations).length > 0) {
+          existingTranslations.set(id, existing.translations);
+        }
+      }
+    } catch (e) {
+      console.warn(`⚠ Could not read existing translations from ${outPath}: ${e.message}`);
+    }
+  }
+
+  let preservedTranslations = 0;
+  for (const [id, item] of Object.entries(results)) {
+    const prevTrans = existingTranslations.get(id);
+    if (!prevTrans) continue;
+    const overrideTrans = overrides[id]?.translations;
+    if (overrideTrans && typeof overrideTrans === 'object') {
+      const merged = { ...prevTrans };
+      for (const [lang, fields] of Object.entries(overrideTrans)) {
+        merged[lang] = fields && typeof fields === 'object' ? { ...(merged[lang] ?? {}), ...fields } : fields;
+      }
+      item.translations = merged;
+    } else if (!item.translations) {
+      item.translations = prevTrans;
+      preservedTranslations++;
+    }
+  }
+
   writeFileSync(outPath, JSON.stringify(results, null, 2), 'utf-8');
 
-  console.log(`\nDone. ${catalog.length} items (${overriddenCount} with overrides, ${hiddenCount} hidden).`);
+  console.log(`\nDone. ${catalog.length} items (${overriddenCount} with overrides, ${hiddenCount} hidden, ${preservedTranslations} translations preserved).`);
   console.log(`Icons: ${hashToCanonicalPath.size} unique saved, ${deduplicatedCount} deduplicated/shared, ${prunedCount} duplicates/orphans pruned from disk.`);
   console.log(`Workbench coverage: ${workbenchIds.size - missing.length}/${workbenchIds.size} found.`);
   console.log(`Saved to ${outPath}`);
-  // Rigenerare items.json cancella le traduzioni: vanno riapplicate con lo script dedicato.
-  console.log('\nSuggerimento: rilancia `node fetch-translations.mjs` per riapplicare le traduzioni agli oggetti appena rigenerati.');
+  console.log('\nSuggerimento: esegui `node fetch-translations.mjs` se vuoi aggiornare le traduzioni da RaidTheory / ARC Tracker.');
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

@@ -17,6 +17,8 @@ dist-ssr
 scripts/metaforge-raw.json
 scripts/metaforge-quests-raw.json
 scripts/translations-raw.json
+scripts/skills-raw.json
+scripts/maps-pois-raw.json
 # Cache e rapporti locali di ARC Tracker (dati non distribuiti, regenerabili con scripts/fetch-arctracker.mjs)
 scripts/arctracker-raw.json
 scripts/arctracker-cosmetics-raw.json

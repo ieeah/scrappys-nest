@@ -25,11 +25,12 @@ const REFRESH = process.argv.includes('--refresh');
 const PIPELINE = [
   { script: 'fetch-items.mjs', label: '1. Catalogo Oggetti & Icone (MetaForge)', supportsRefresh: true },
   { script: 'fetch-translations.mjs', label: '2. Traduzioni Italiane (RaidTheory + ARC Tracker)', supportsRefresh: true },
-  { script: 'fetch-skills.mjs', label: '3. Skill Tree dei Raiders (RaidTheory + Wiki)', supportsRefresh: false },
+  { script: 'fetch-skills.mjs', label: '3. Skill Tree dei Raiders (RaidTheory + Wiki)', supportsRefresh: true },
   { script: 'fetch-quests.mjs', label: '4. Grafo 123 Quest (MetaForge + ARC Tracker)', supportsRefresh: true },
   { script: 'fetch-recipes.mjs', label: '5. Ricette, Potenziamenti & Riparazioni (ARC Tracker)', supportsRefresh: true },
   { script: 'fetch-category-icons.mjs', label: '6. Icone Categoria (MediaWiki API)', supportsRefresh: false },
   { script: 'fetch-arc-maps.mjs', label: '7. Mappe & POI (arcraidersmaps.app)', supportsRefresh: true },
+  { script: 'validate-dataset.mjs', label: '8. Validazione Integrità Dataset', supportsRefresh: false },
 ];
 
 function runScript(scriptInfo) {

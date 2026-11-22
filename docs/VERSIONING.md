@@ -28,8 +28,8 @@ I nickname seguono l'evoluzione narrativa del rifugio dei Raiders in Speranza. L
 - **0.6.5**: *Codex & Data Mining* (**Nuova** — Estrazione totale del dataset di gioco: Nemici ARC con loot table/debolezze, Mappe e POI, normalizzazione 123 Quest e Commercianti)
 - **0.6.9**: *Engine Freeze* (**Raggiunta** — Isolamento `src/engine/` a zero dipendenze UI, 100% unit test, congelamento e preparazione alla transizione di repository)
 
-### Era 2: Tooling & Seed (2–3 Settimane)
-- Pipeline di ingestion, validatori di integrità referenziale e script di generazione seed SQL/Postgres.
+### Era 2: Tooling & Seed (**Raggiunta**)
+- Pipeline di ingestion resiliente (`--refresh`, override locali, `patch-diff`), validatori di integrità referenziale/DAG e script di generazione seed SQL/Postgres idempotente (questo repository resta attivo per uso personale, testing e validazione di concetti).
 
 ### Era 3: Progettazione Architettura & Design (1 Mese)
 - Schema relazionale definitivo (Drizzle/Supabase), wireframe, design tokens e setup componenti headless Base UI.
@@ -206,11 +206,11 @@ Changelog: [changelog/0.6.9.md](../changelog/0.6.9.md)
 
 ---
 
-## Era 2: Tooling & Seed (2–3 Settimane)
-Obiettivo: preparare gli strumenti che convertiranno il dataset locale nel database del nuovo progetto.
-- Pipeline di ingestion dati e script di normalizzazione.
-- Generatore di Seed SQL / Postgres per Supabase / Neon con integrità referenziale.
-- Script di validazione incrociata tra entità (ogni item referenziato in banchi, ricette, quest e drop deve esistere nel catalogo).
+## Era 2: Tooling & Seed — Raggiunta
+Obiettivo: preparare gli strumenti che convertono e validano il dataset locale per il database del nuovo progetto (mantenendo questo repository attivo per uso personale, testing e validazione di concetti).
+- [x] Pipeline di ingestion resiliente, alias upstream (`scripts/data/upstream-aliases.json`), override manuali (`quests-overrides.json`, `map-pois-overrides.json`), `--refresh` e tool `scripts/patch-diff.mjs` ([ADR 010](adrs/010-pipeline-dati-validazione-e-tracciabilita-upstream.md)).
+- [x] Schema Postgres/Drizzle (`scripts/db/schema.sql`, `scripts/db/schema.ts`) e generatore di Seed SQL idempotente (`scripts/generate-seed.mjs`) con integrità referenziale ([ADR 009](adrs/009-schema-catalogo-postgres-e-seed-idempotente.md), [schema-postgres-e-seed-era2.md](specs/schema-postgres-e-seed-era2.md)).
+- [x] Script di validazione incrociata e DAG (`scripts/validate-dataset.mjs`: 11 regole `ERROR`, 5 `WARNING`, integrato in `scripts/fetch-all.mjs`).
 
 ---
 

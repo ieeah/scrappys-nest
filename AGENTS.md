@@ -83,6 +83,7 @@ Il progetto adotta la convenzione **layered-docs**: file sintetici in radice per
 - [docs/specs/base-items-e-varianti-followup.md](docs/specs/base-items-e-varianti-followup.md) — Follow-up Base Items Studio, Dettaglio Oggetto e Ricerche Armi Amplificate.
 - [docs/specs/in-raid-actions-architecture.md](docs/specs/in-raid-actions-architecture.md) — Architettura componibile delle azioni in-raid (fasi, scaglioni, unico raid, bivi).
 - [docs/specs/gameplay-tips-and-strategies.md](docs/specs/gameplay-tips-and-strategies.md) — Suggerimenti e strategie per la gestione delle risorse di gioco.
+- [docs/specs/schema-postgres-e-seed-era2.md](docs/specs/schema-postgres-e-seed-era2.md) — Specifica tecnica Era 2→3: validatore dataset, schema Postgres e seed idempotente.
 
 ### Decisioni Architetturali (`docs/adrs/`)
 - [docs/adrs/001-zustand-senza-middleware-persist.md](docs/adrs/001-zustand-senza-middleware-persist.md) — Rimoziome middleware persist nativo.
@@ -93,3 +94,5 @@ Il progetto adotta la convenzione **layered-docs**: file sintetici in radice per
 - [docs/adrs/006-feature-flags-da-seed-con-override-locale.md](docs/adrs/006-feature-flags-da-seed-con-override-locale.md) — Feature flag da seed con override locale (bozza).
 - [docs/adrs/007-strumenti-dev-bozze-a-differenze-e-applica.md](docs/adrs/007-strumenti-dev-bozze-a-differenze-e-applica.md) — Strumenti Dev: bozze a differenze e «Applica» (bozza).
 - [docs/adrs/008-reward-pass-come-lista-con-tracce-generiche.md](docs/adrs/008-reward-pass-come-lista-con-tracce-generiche.md) — Reward Pass come lista con tracce generiche (bozza).
+- [docs/adrs/009-schema-catalogo-postgres-e-seed-idempotente.md](docs/adrs/009-schema-catalogo-postgres-e-seed-idempotente.md) — Schema relazionale Postgres del catalogo e seed idempotente (Era 2 → Era 3).
+- [docs/adrs/010-pipeline-dati-validazione-e-tracciabilita-upstream.md](docs/adrs/010-pipeline-dati-validazione-e-tracciabilita-upstream.md) — Pipeline dati, validazione integrità e tracciabilità upstream (Era 2).

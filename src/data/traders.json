@@ -216,7 +216,7 @@
       "dailyLimit": 1
     },
     {
-      "id": "duct-tape-recipe",
+      "id": "duct-tape",
       "trader": "celeste",
       "price": 6,
       "dailyLimit": 10
@@ -302,12 +302,12 @@
       "dailyLimit": 5
     },
     {
-      "id": "rubber-parts-recipe",
+      "id": "rubber-parts",
       "trader": "celeste",
       "price": 1
     },
     {
-      "id": "sensors-recipe",
+      "id": "sensors",
       "trader": "celeste",
       "price": 10,
       "dailyLimit": 5
@@ -360,7 +360,7 @@
       "dailyLimit": 5
     },
     {
-      "id": "wires-recipe",
+      "id": "wires",
       "trader": "celeste",
       "price": 4,
       "dailyLimit": 5

@@ -181,15 +181,22 @@ function withoutReview(override = {}) {
   return fields;
 }
 
+const CURRENCY_CLASSIFICATION = {
+  coins: { item_type: 'Currency', subcategory: 'Purchase' },
+  'raider-tokens': { item_type: 'Currency', subcategory: 'Purchase' },
+  'research-points': { item_type: 'Currency', subcategory: 'Progression' },
+};
+
 function trimItem(item, icon, itemOverride = {}) {
+  const currencyClass = CURRENCY_CLASSIFICATION[item.id];
   const base = {
     id: item.id,
     name: item.name,
     description: item.description ?? '', // cosmetics/furniture can come without a description
     icon,
-    rarity: item.rarity ?? 'Common', // ...and without a rarity
-    item_type: item.item_type,
-    subcategory: item.subcategory,
+    rarity: item.rarity || 'Common', // ...and without a rarity
+    item_type: currencyClass?.item_type ?? item.item_type,
+    subcategory: currencyClass?.subcategory ?? item.subcategory,
     value: item.value,
     workbench: item.workbench,
     loot_area: item.loot_area,

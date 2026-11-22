@@ -7,7 +7,7 @@
     ],
     "totalQuests": 123,
     "totalEdges": 134,
-    "extractedAt": "2026-11-17"
+    "extractedAt": "2026-11-22"
   },
   "nodes": [
     {
@@ -57,7 +57,7 @@
       "nameIT": "Un raccolto equilibrato",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "Our food production is finally enough to meet our basic needs, but what we really need now is variety. I have a lead on some agricultural research from before the First Wave. Are you in?",
       "descriptionIT": "La nostra produzione alimentare è finalmente sufficiente a soddisfare le nostre esigenze di base, ma ciò di cui abbiamo davvero bisogno ora è la varietà. Ho degli indizi su alcune ricerche agricole antecedenti la Prima ondata. Ti va di darmi una mano?",
@@ -105,13 +105,13 @@
       "metaforgeId": "a-better-use",
       "name": "A Better Use",
       "nameIT": "Un uso migliore",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "the_blue_gate",
-        "dam_battlegrounds",
-        "riven_tide"
+        "buried-city",
+        "spaceport",
+        "blue-gate",
+        "dam",
+        "riven-tides"
       ],
       "description": "We're short on everything but mouths to feed, yet Celeste's launching precious supplies into the air for Raiders to claw over. I’m done letting the good stuff go to waste.",
       "descriptionIT": "Siamo a corto di tutto, tranne di bocche da sfamare, e Celeste è lì che lancia in aria forniture preziose per i Raider. Sono stufa di questi sprechi.",
@@ -157,7 +157,7 @@
       "nameIT": "Un vicolo cieco",
       "trader": "shani",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "I… I don’t get it. One day they were trying to stave off the Collapse, and then, suddenly… Nothing.\r\n\r\nThat earthquake-resistant housing project was shut down by a group named MANTIKOR. Think you could find out more?",
       "descriptionIT": "Non... Non capisco. Un giorno stavano cercando di evitare il Crollo e poi, all'improvviso... Niente.\r\n\r\nQuel progetto di edilizia antisismica è stato chiuso da un gruppo chiamato MANTIKOR. Pensi che potresti scoprire qualcosa di più?",
@@ -207,7 +207,7 @@
       "nameIT": "Un primo appoggio",
       "trader": "apollo",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "We’ve only just finished expanding the Tube network towards the Blue Gate, and we’re still laboring away at the rest.\n\nMy crew’s been building new infrastructure around the valley to safeguard our Raiders, but the constant ARC threat has made it difficult to get anything done.",
       "descriptionIT": "Abbiamo appena finito di ampliare la rete della metro verso il Varco Blu, e stiamo ancora lavorando al resto. La mia squadra sta costruendo nuove infrastrutture intorno alla valle per salvaguardare i nostri Raider, ma la minaccia costante dell'ARC ha reso difficile fare qualsiasi cosa.",
@@ -261,7 +261,7 @@
       "nameIT": "Distesa di terra",
       "trader": "shani",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "Those distant rumbles are getting less distant with each passing day.\n\nI have a lead on some LiDAR scanners that may help us monitor the tremors. You do want to keep a roof over your head, don’t you?",
       "descriptionIT": "Quei rombi lontani diventano sempre meno lontani ogni giorno che passa. Ho una pista su alcuni scanner LiDAR che potrebbero aiutarci a monitorare le scosse. Vuoi tenerti un tetto sopra la testa, vero?",
@@ -315,7 +315,7 @@
       "nameIT": "Un nuovo tipo di pianta",
       "trader": "lance",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "Some scouts have been bringing back reports of these weird plants spreading into the area. Now, this makes your old pal Lance think it may have some interesting uses.",
       "descriptionIT": "Alcuni perlustratori hanno riferito notizie di queste strane piante che si stanno diffondendo nella zona. Questo fa pensare al tuo vecchio amico Lance che possano avere degli usi interessanti.",
@@ -355,9 +355,9 @@
       "metaforgeId": "a-path-not-yours",
       "name": "A Path Not Yours",
       "nameIT": "Un percorso che non è tuo",
-      "trader": "cassio",
+      "trader": "nomadic-envoy",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "Before our paths changed, we lingered by the Blue Gate for some time. We believe there is an old trail from those days, and something belonging to us may still lie at its end.",
       "descriptionIT": "Prima che le nostre strade si separassero, ci siamo soffermati per un po' presso il Varco Blu. Crediamo che esista un antico sentiero risalente a quei tempi, e che qualcosa di nostra appartenenza possa ancora trovarsi alla sua estremità.",
@@ -419,7 +419,7 @@
       "nameIT": "Un esemplare primario",
       "trader": "shani",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "That Deforester by the Blue Gate may have caused some real devastation, but a pristine husk like that is also an invaluable sample for our research.",
       "descriptionIT": "Quel Deforester vicino al Varco Blu può aver causato una devastazione enorme, ma una carcassa intatta come quella è anche un campione di inestimabile valore per le nostre ricerche.",
@@ -465,8 +465,8 @@
       "nameIT": "Un'ondata in crescita",
       "trader": "celeste",
       "map": [
-        "buried_city",
-        "dam_battlegrounds"
+        "buried-city",
+        "dam"
       ],
       "description": "Says here there was a foreman at The Dam, who got recruited right after they canceled Project Heartwood. Got put in charge of some big reconstruction project.",
       "descriptionIT": "Qui dice che c'era un caposquadra alla Diga, che è stato reclutato subito dopo la cancellazione del progetto Evergreen. Gli hanno affidato la responsabilità di un grande progetto di ricostruzione.",
@@ -528,7 +528,7 @@
       "nameIT": "Un simbolo di unità",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "Y’know, back in the day we actually used to have a flag - well, a scrap of cloth more than anything. Still, seeing it meant you knew you had allies nearby, that you were on your own home turf. So, I was thinking…",
       "descriptionIT": "Sai, ai tempi avevamo davvero una bandiera... beh, più che altro un pezzo di stoffa. Tuttavia, vederla significava sapere che avevi degli alleati nelle vicinanze, che eri nel tuo territorio. Quindi, stavo pensando...",
@@ -578,7 +578,7 @@
       "nameIT": "Una scia tossica",
       "trader": "shani",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "We've got clean water again, but we can't risk people falling ill if the saboteurs return. We need to root them out once and for all.",
       "descriptionIT": "Abbiamo di nuovo acqua pulita, ma non possiamo rischiare che la gente si ammali se i sabotatori tornano. Dobbiamo stanarli una volta per tutte.",
@@ -636,7 +636,7 @@
       "nameIT": "Un posto caldo in cui riposare",
       "trader": "apollo",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "A customer of mine saw a family taking cover in an old encampment in Buried City. I'll pay anyone who manages to find them and escort them back to safety.",
       "descriptionIT": "Un mio cliente ha visto una famiglia rifugiarsi in un vecchio accampamento nella Città sepolta. Pagherò chiunque riesca a trovarli e a portarli al sicuro.",
@@ -694,7 +694,7 @@
       "nameIT": "Un intoppo",
       "trader": "celeste",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "Looks like the resentment ended up reaching the ground staff of the Spaceport itself. A mutiny brewing, right in the heart of the Exodus.",
       "descriptionIT": "Sembra che il risentimento sia arrivato a coinvolgere anche il personale di terra dello Spazioporto. Stava per scoppiare una rivolta, proprio nel cuore dell'Esodo.",
@@ -740,7 +740,7 @@
       "nameIT": "Dopo la pioggia",
       "trader": "celeste",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "I know, I know! The power's down in sector—\r\nOh, hey. A flash flood took out some of our solar panels in Buried City, and the generators only hold on for so long.\r\n\r\nDo us all a solid when you're up there, OK?",
       "descriptionIT": "Lo so, lo so! È andata via la corrente nel settore...\r\nOh, ciao. Un'alluvione improvvisa ha distrutto alcuni dei nostri pannelli solari nella Città sepolta, e i generatori resistono solo fino a una certa.\r\n\r\nCi pensi tu quando vai lassù?",
@@ -793,9 +793,9 @@
       "metaforgeId": "armored-transports",
       "name": "Armored Transports",
       "nameIT": "Trasporti corazzati",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "Ever since we expanded the tunnels to the Blue Gate, some rare pieces have started appearing on the black market.\n\nMeanwhile, I'm stuck here peddling battered old Rattlers. If I don't find new supply lines, I'll be left in the dust. ",
       "descriptionIT": "Da quando abbiamo ampliato i tunnel fino al Varco Blu, alcuni pezzi rari hanno iniziato a comparire sul mercato nero. Nel frattempo, io sono bloccato qui a vendere vecchi Rattler malconci. Se non trovo nuove linee di rifornimento, resterò indietro.",
@@ -852,12 +852,12 @@
       "metaforgeId": "back-on-top",
       "name": "Back on Top",
       "nameIT": "Di nuovo in cima",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "the_blue_gate",
-        "dam_battlegrounds"
+        "buried-city",
+        "spaceport",
+        "blue-gate",
+        "dam"
       ],
       "description": "Guess what? Shani asked me to help out with something, and for once, I’m actually glad she did. We’re setting up new outposts topside! Or, planning to, at least. Can you believe it?",
       "descriptionIT": "Indovina un po'? Shani mi ha chiesto di aiutarla con una cosa e, per una volta, sono davvero felice che l'abbia fatto. Stiamo creando nuovi avamposti in Superficie! O, almeno, stiamo pianificando di farlo. Riesci a crederci?",
@@ -913,7 +913,7 @@
       "nameIT": "Esca, recupera, spara",
       "trader": "apollo",
       "map": [
-        "pendola_pass"
+        "pendola-pass"
       ],
       "description": "Tough nuts to crack, those Bullies. But you know, nothing’s indestructible. I’ve heard of a few tricks that might just work, care to put them to a test?",
       "descriptionIT": "Quei Bully sono davvero degli ossi duri. Ma sai, niente è indistruttibile. Ho sentito parlare di alcuni stratagemmi che potrebbero funzionare: ti va di metterli alla prova?",
@@ -963,7 +963,7 @@
       "nameIT": "Messa in sicurezza",
       "trader": "apollo",
       "map": [
-        "riven_tide"
+        "riven-tides"
       ],
       "description": "We’d hoped the seawalls at Riven Tides might offer us some protection from the elements, but it seems the hurricanes were not kind to this place, either.",
       "descriptionIT": "Speravamo che le dighe di Spezzamarea ci offrissero un po' di protezione dalle intemperie, ma sembra che gli uragani non siano stati clementi nemmeno con questo luogo.",
@@ -1009,7 +1009,7 @@
       "nameIT": "Api!",
       "trader": "celeste",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "Bees! There are bees still around! While I’m no expert, our greenhouse crew desperately wants some.",
       "descriptionIT": "Api! Ci sono ancora api in giro! Non sono un esperto, ma il personale della serra ne vuole disperatamente alcune.",
@@ -1051,7 +1051,7 @@
       "nameIT": "Ventre della bestia",
       "trader": "shani",
       "map": [
-        "pendola_pass"
+        "pendola-pass"
       ],
       "description": "ARC’s been swarming that fallen Emperor like flies on honey. I’m picking up signals from far beyond the Rust Belt, and they’re not slowing down.",
       "descriptionIT": "L'ARC sta sciamando attorno a quell'Imperatore caduto come mosche sul miele. Sto captando segnali da ben oltre la Cintura di ruggine, e non accennano a rallentare.",
@@ -1212,9 +1212,9 @@
       "metaforgeId": "broken-monument",
       "name": "Broken Monument",
       "nameIT": "Monumento rotto",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "I have another special site I need you to search for me. An old battlegrounds, from the First Wave. Raiders nowadays usually pick places like that clean, despite the significance they once held. People forget quickly. Quicker than they should.",
       "descriptionIT": "Ho un altro sito speciale che devi esaminare per me. Un vecchio campo di battaglia, risalente alla Prima ondata. I Raider di oggi sono soliti ripulire luoghi come questo, nonostante l'importanza che avevano un tempo. Le persone dimenticano in fretta. Più velocemente di quanto dovrebbero.",
@@ -1280,7 +1280,7 @@
       "nameIT": "Costruire una biblioteca",
       "trader": "apollo",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "Our library selection has grown pretty stale. Could you head out to Buried City, and find something more for us to read? Make sure you bring something for everyone.",
       "descriptionIT": "La nostra biblioteca è diventata obsoleta ormai. Puoi andare alla Città sepolta e trovare qualcos'altro che possiamo leggere? Magari prendi qualcosa per tutti.",
@@ -1338,7 +1338,7 @@
       "nameIT": "Disegni d'infanzia di Celeste",
       "trader": "lance",
       "map": [
-        "riven_tide"
+        "riven-tides"
       ],
       "description": "Say, pal, has Celeste seemed a bit down, to you? \r\n\r\nListen, I think I know something that might brighten her day. Do you know the hotel around Riven Tides?",
       "descriptionIT": "Senti, ma non ti sembra che Celeste sia un po' giù di morale?\r\n\r\nCredo di sapere qualcosa che potrebbe rallegrarle la giornata. Conosci l'hotel nei pressi di Spezzamarea?",
@@ -1388,7 +1388,7 @@
       "nameIT": "Diari di Celeste",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "Okay, so this is awkward… I lost two of my journals during some outpost inspections last time I went topside. Could you head out there and try to find them back before someone else stumbles on them?",
       "descriptionIT": "Ok, questa è una situazione imbarazzante... Ho perso due dei miei diari durante alcune ispezioni agli avamposti l'ultima volta che sono andata in Superficie. Potresti andare là fuori e cercare di trovarli, prima che lo faccia qualcun altro?",
@@ -1438,7 +1438,7 @@
       "nameIT": "Ribellione adolescenziale di Celeste",
       "trader": "celeste",
       "map": [
-        "riven_tide"
+        "riven-tides"
       ],
       "description": "Those Frigates looming in the sky… It made me feel shivers I haven’t felt since I was a girl. \r\n\r\nWe need to adapt, I know. But the lessons we learned then? They're more relevant now than ever.",
       "descriptionIT": "Quelle fregate che incombono nel cielo... Mi hanno fatto venire brividi che non provavo da quando ero ragazzina. Dobbiamo adattarci, lo so. Ma le lezioni che abbiamo imparato allora? Ora sono più attuali che mai.",
@@ -1465,7 +1465,7 @@
       "objectives": [
         {
           "en": "Reach the lookout tower on Mulatierra Hill",
-          "it": "Raggiungi la torre di vedetta a Central Hill"
+          "it": "Raggiungi la torre di avvistamento a Colle Mulattiera"
         },
         {
           "en": "Transmit the location from the top of the tower",
@@ -1504,7 +1504,7 @@
       "nameIT": "In cerca di attenzione",
       "trader": "shani",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "I think I've found something we might exploit. When bigger ARC machines are just far enough from each other, a well-timed distraction could pull one out of position. You want to test that idea?",
       "descriptionIT": "Credo di aver trovato qualcosa che potremmo sfruttare. Quando le macchine ARC più grandi sono abbastanza distanti tra loro, un diversivo ben programmato potrebbe farne uscire una dalla sua posizione. Vuoi mettere alla prova questa idea?",
@@ -1561,9 +1561,9 @@
       "metaforgeId": "clean-hands",
       "name": "Clean Hands",
       "nameIT": "Mani pulite",
-      "trader": "cassio",
+      "trader": "nomadic-envoy",
       "map": [
-        "pendola_pass"
+        "pendola-pass"
       ],
       "description": "A matter remains at Pendola Pass which should have been settled by our own hands. That path is no longer open to us, so we must ask another.",
       "descriptionIT": "Al Passo di Pendola rimane una questione che avremmo dovuto risolvere con le nostre stesse mani. Quella strada non ci è più aperta, quindi dobbiamo rivolgerci a qualcun altro.",
@@ -1666,7 +1666,7 @@
       "nameIT": "Cella frigorifera",
       "trader": "shani",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "Reports about Stella Montis keep coming in, and it’s unlike anything we’ve seen before. There may be records or relics from the past in there, and if so, I want them.",
       "descriptionIT": "Continuano ad arrivare rapporti su Stella Montis, ed è diverso da qualsiasi cosa abbiamo visto finora. Potrebbero esserci documenti o reliquie dal passato lì dentro, e se così fosse, li voglio.",
@@ -1706,7 +1706,7 @@
       "metaforgeId": "collision-course",
       "name": "Collision Course",
       "nameIT": "Rotta di collisione",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": null,
       "description": "Many Raiders have learned how to dodge a Comet, but far too few know how to bring them down and get at their inner parts.",
       "descriptionIT": "Molti Raider hanno imparato a schivare una Cometa, ma purtroppo pochi sanno come abbatterla e raggiungere le sue parti interne.",
@@ -1752,7 +1752,7 @@
       "nameIT": "Ricognizione da combattimento",
       "trader": "shani",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "With those Bombardiers roaming around, ARC has found an entirely new way to flush Raiders out of cover. \r\n\r\nIf you’re hoping to take one down, you’ll need to sharpen your skills and your strategy.",
       "descriptionIT": "Con quei Bombardieri che pattugliano la zona, gli ARC hanno trovato un modo completamente nuovo per stanare i Raider dalle coperture. \r\n\r\nSe speri di abbatterne uno, dovrai affinare abilità e strategia.",
@@ -1811,7 +1811,7 @@
       "nameIT": "Nascondiglio di comunicazione",
       "trader": "shani",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "We've been losing signals in some areas of Buried City—my guess is that our equipment is acting up. You’re quite skilled with repairs, aren’t you? Could you check it out?",
       "descriptionIT": "Abbiamo perso il segnale in alcune zone della Città sepolta: credo che la nostra attrezzatura stia dando problemi. Tu sei abbastanza abile nelle riparazioni, vero? Puoi controllare?",
@@ -1865,7 +1865,7 @@
       "nameIT": "Decifrare i dati",
       "trader": "shani",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "If the data you found can keep the ceiling from collapsing, we have no time to spare.\r\n\r\nI know of a few magnetic decryptors around Acerra Spaceport, from back during the Exodus. They might still be working.",
       "descriptionIT": "Se i dati che hai trovato possono evitare che il soffitto crolli, non abbiamo tempo da perdere.\r\n\r\nSo che ci sono dei Decrittatori magnetici allo Spazioporto di Acerra, risalenti al periodo dell'Esodo. Potrebbero essere ancora funzionanti.",
@@ -1911,7 +1911,7 @@
       "nameIT": "Portare a galla il fango",
       "trader": "celeste",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "We caught a break. One of our scouts saw a member of the Tubes Management make a dead drop inside the Santa Maria Houses in the Buried City. This might be our chance to dig up some dirt on them for a change. You in?",
       "descriptionIT": "Abbiamo avuto fortuna. Uno dei nostri perlustratori ha visto un membro della Gestione ufficiale metro che faceva una consegna segreta all'interno delle Residenze Santa Maria nella Città sepolta. Potrebbe essere la nostra occasione di ricattarli. Che dici?",
@@ -2003,9 +2003,9 @@
       "metaforgeId": "divided",
       "name": "Divided",
       "nameIT": "Divisi",
-      "trader": "cassio",
+      "trader": "nomadic-envoy",
       "map": [
-        "pendola_pass"
+        "pendola-pass"
       ],
       "description": "So. Speranza knows what happened at Pendola Pass.\r\nWhat was done there has cost your people dearly. Ours have not been spared the consequence.",
       "descriptionIT": "Allora. Speranza sa cosa è successo al Passo di Pendola. Ciò che è stato fatto lì è costato caro alla tua gente. Neanche i nostri sono stati risparmiati dalle conseguenze.",
@@ -2137,9 +2137,9 @@
       "nameIT": "Baroni dormienti",
       "trader": "shani",
       "map": [
-        "the_spaceport",
-        "the_blue_gate",
-        "dam_battlegrounds"
+        "spaceport",
+        "blue-gate",
+        "dam"
       ],
       "description": "During the First Wave, the Barons did more damage than all the other machines combined. Now they’re mere husks; fixed in place where they once fell... \n\nStill, their internals might hold the answer to keeping ARC at bay. So open one up, and bring me whatever is inside.",
       "descriptionIT": "Durante la Prima ondata, i Baroni hanno causato più danni di tutte le altre macchine messe insieme. Ora sono solo carcasse vuote, fermi dove sono caduti... ma i loro circuiti interni potrebbero contenere la chiave per fermare l'ARC. Aprine uno e portami ciò che trovi.",
@@ -2178,10 +2178,10 @@
       "nameIT": "Terra-terra",
       "trader": "shani",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "dam_battlegrounds",
-        "riven_tide"
+        "buried-city",
+        "spaceport",
+        "dam",
+        "riven-tides"
       ],
       "description": "Raiders have long reported peculiar-looking crates dropping down from malfunctioning ARC Probes. \n\nIf we can figure out a way to crack them open, we might get a better understanding of what it is they’re after.",
       "descriptionIT": "Da tempo i Raider riferiscono di casse dall'aspetto particolare che cadono da sonde ARC malfunzionanti. Se riuscissimo a trovare un modo per aprirle, potremmo capire meglio cosa stanno cercando.",
@@ -2227,7 +2227,7 @@
       "nameIT": "Polvere sui cavi",
       "trader": "shani",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "I sent a scout team to the Spaceport a while ago. Routine work — cataloging security, see if there's anything we could re-purpose. But I've heard nothing for two days.",
       "descriptionIT": "Ho mandato una squadra di ricognizione allo Spazioporto qualche tempo fa. Lavoro di routine: catalogare la sicurezza, vedere se c'è qualcosa che possiamo riconvertire. Ma non ho notizie da due giorni.",
@@ -2281,7 +2281,7 @@
       "nameIT": "Echi della Cresta della Vittoria",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "Did you feel any tremors last night? Me neither. But apparently the ground shifted at some point, and in the process it unearthed an old First Wave outpost that’d been blocked by debris. I’d like you to get in there quick, before anyone else does.",
       "descriptionIT": "Hai sentito qualche scossa ieri sera? Nemmeno io. Ma a quanto pare il terreno si è spostato a un certo punto e nel processo ha portato alla luce un vecchio avamposto della Prima ondata che era bloccato dai detriti. Vorrei che ti recassi lì al più presto, prima che lo faccia qualcun altro.",
@@ -2331,7 +2331,7 @@
       "nameIT": "Prototipi empatici",
       "trader": "lance",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "To think I may have kin just dangling in a shipment crate… What horror! What unspeakable horror!",
       "descriptionIT": "Pensare che potrei avere dei parenti che penzolano in una cassa da trasporto... Che orrore! Che orrore indicibile!",
@@ -2385,7 +2385,7 @@
       "nameIT": "Espresso",
       "trader": "apollo",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "A Raider came into my shop earlier, to trade some grenades for a machine she found in Buried City. She said it makes coffee, but it seems to be missing a few parts. Up for a job?",
       "descriptionIT": "Prima una Raider è entrata nel mio negozio per scambiare delle granate con una macchina che aveva trovato nella Città sepolta. Ha detto che fa il caffè, ma pare che manchino delle parti. Ti va un lavoretto?",
@@ -2427,7 +2427,7 @@
       "nameIT": "Una rivelazione in rovina",
       "trader": "lance",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "I got my hands on a fancy new ESR analyzer; had a whole big reveal planned. One minute it’s here, next minute—poof. Please help?",
       "descriptionIT": "Ho messo le mani su un nuovissimo Analizzatore VES, avevo programmato una mega presentazione. Un attimo fa era qui, e poi... puf. Mi aiuti?",
@@ -2469,7 +2469,7 @@
       "nameIT": "Esplorazione del Passo di Pendola",
       "trader": "celeste",
       "map": [
-        "pendola_pass"
+        "pendola-pass"
       ],
       "description": "ARC’s always been drawn to gunfire and commotion, but we’ve never seen them quite converge on a place like they have at Pendola Pass.",
       "descriptionIT": "L'ARC è sempre stato attratto dagli spari e dal trambusto, ma non li avevamo mai visti convergere su un posto come hanno fatto al Passo di Pendola.",
@@ -2528,9 +2528,9 @@
       "nameIT": "Occhi al cielo",
       "trader": "shani",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "dam_battlegrounds"
+        "buried-city",
+        "spaceport",
+        "dam"
       ],
       "description": "Those LiDAR scanners you found work best when put in high locations. I’ve identified a few good spots around the Rust Belt; hope you’re surefooted.",
       "descriptionIT": "Gli scanner LiDAR che hai trovato funzionano meglio se collocati in posizioni elevate. Ho individuato alcuni buoni punti intorno alla Cintura di ruggine, spero tu abbia un buon equilibrio.",
@@ -2578,9 +2578,9 @@
       "metaforgeId": "eyes-on-the-prize",
       "name": "Eyes on the Prize",
       "nameIT": "Occhi sul premio",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "Everything’s been calm around my drop-offs since you helped out, but that doesn’t mean it’ll stay that way for long. I’ve set up surveillance at one of my most used spots in Buried City, to prevent future tampering. Only problem is, it needs power to go live.",
       "descriptionIT": "Da quando mi hai dato una mano, tutto si è calmato intorno ai miei depositi, ma questo non significa che resterà così a lungo. Ho installato un sistema di sorveglianza in uno dei miei punti più utilizzati nella Città sepolta, per evitare future manomissioni. L'unico problema è che ha bisogno di energia per funzionare.",
@@ -2627,7 +2627,7 @@
       "nameIT": "Minaccia lampeggiante",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "My usual engineer is still healing from his wounds, and has been loopy for days. We can’t afford to be at half-grid until he heals; I need someone to pick up his wrench in the mean time.",
       "descriptionIT": "Il mio solito ingegnere sta ancora recuperando ed è fuori gioco da giorni. Non possiamo permetterci di rimanere a metà rete finché non guarisce; nel frattempo ho bisogno di qualcuno che lo sostituisca.",
@@ -2686,7 +2686,7 @@
       "nameIT": "Registri frammentari",
       "trader": "shani",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "Now that we’ve found our footing on Stella Montis, several parties are interested in digging a bit deeper and seeing what we can find out about the past of this place. To do so, however, we’ll need to power up some of these old machines so we can start to sift through the data. ",
       "descriptionIT": "Ora che abbiamo trovato il nostro equilibrio su Stella Montis, diverse fazioni sono interessate a scavare un po' più a fondo e a vedere cosa possiamo scoprire sul passato di questo luogo. Per farlo, però, dobbiamo alimentare alcune di queste vecchie macchine per iniziare a setacciare i dati. ",
@@ -2733,7 +2733,7 @@
       "nameIT": "Incontri furtivi",
       "trader": "shani",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "I’m still sorting through the data you found in Stella Montis, but something’s caught my eye. I’d like you to look into it.",
       "descriptionIT": "Sto ancora esaminando i dati che hai trovato a Stella Montis, ma qualcosa ha attirato la mia attenzione. Vorrei che ci dessi un'occhiata.",
@@ -2787,9 +2787,9 @@
       "nameIT": "Mani unte",
       "trader": "celeste",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "dam_battlegrounds"
+        "buried-city",
+        "spaceport",
+        "dam"
       ],
       "description": "Recently, I’ve been trying and failing to get Tian Wen to join our community projects.\n\nI may have to sweeten the deal. She’s been complaining about the quality of salvage found on the market; think we could do her a solid?",
       "descriptionIT": "Recentemente ho cercato, senza riuscirci, di convincere Tian Wen a partecipare ai nostri progetti comunitari. Forse dovrò rendere più appetibile l'accordo. Si è lamentata della qualità dei materiali di recupero che si trovano sul mercato; pensi che potremmo farle un favore?",
@@ -2843,7 +2843,7 @@
       "nameIT": "Novità rivoluzionaria",
       "trader": "apollo",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "Data or no data: we’ll learn how to make this place earthquake-proof. With a research this in-depth, there’s bound to be a paper trail somewhere.",
       "descriptionIT": "Dati o non dati: impareremo come rendere questo posto a prova di terremoto. Con una ricerca così approfondita, ci sarà sicuramente una traccia cartacea da qualche parte.",
@@ -2937,7 +2937,7 @@
       "nameIT": "Ritorno al nido",
       "trader": "shani",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "All of these old logs mention mutinies being repressed by MANTIKOR… Then suddenly, nothing. The entries just stop, a few weeks before the Exodus.",
       "descriptionIT": "Tutti questi vecchi diari menzionano ammutinamenti repressi da MANTIKOR… Poi, all'improvviso, più nulla. Le annotazioni si interrompono bruscamente, poche settimane prima dell'Esodo.",
@@ -3007,7 +3007,7 @@
       "nameIT": "A mia immagine",
       "trader": "lance",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "I just treated one of the first Raiders who visited Stella Montis, and she said that she saw... others. Androids, very much like me.",
       "descriptionIT": "Ho appena curato una dei primi Raider che hanno visitato Stella Montis, e mi ha detto di aver visto... altri. Androidi, molto simili a me.",
@@ -3047,9 +3047,9 @@
       "metaforgeId": "industrial-espionage",
       "name": "Industrial Espionage",
       "nameIT": "Spionaggio industriale",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "With my own stashes secured, I think it might be time to keep a closer eye on the competition so this doesn’t happen again.",
       "descriptionIT": "Dopo aver messo al sicuro le mie scorte, credo sia arrivato il momento di tenere sotto controllo la concorrenza, per evitare che accada di nuovo.",
@@ -3064,7 +3064,7 @@
       ],
       "rewards": [
         {
-          "itemId": "burltetta",
+          "itemId": "burletta-i",
           "quantity": 1
         },
         {
@@ -3104,11 +3104,11 @@
       "nameIT": "Nella mischia",
       "trader": "shani",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "the_blue_gate",
-        "dam_battlegrounds",
-        "riven_tide"
+        "buried-city",
+        "spaceport",
+        "blue-gate",
+        "dam",
+        "riven-tides"
       ],
       "description": "It used to be their world, up there. Nobody to challenge their claim. \n\nYet here we are. More outposts. More intel. More firepower. If I didn’t know better, I’d say we’ve got quite a bit of fight left in us.",
       "descriptionIT": "Una volta era il loro mondo, lassù. Nessuno contestava le loro pretese. Eppure eccoci qui. Altri avamposti. Più informazioni. Più potenza di fuoco. Se non sapessi come stanno le cose, direi che abbiamo ancora un bel po' di voglia di combattere.",
@@ -3164,7 +3164,7 @@
       "nameIT": "Occhio!",
       "trader": "celeste",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "I’m looking for someone. Bilguun. You might’ve seen him around, but chances are you haven’t. He’s… not the most sociable person around, you see.\r\n\r\nHe spends a lot of time Topside, but usually returns to Speranza regularly to check in.",
       "descriptionIT": "Sto cercando una persona. Bilguun. Forse l'hai visto in giro, ma molto probabilmente no. Diciamo che non è proprio la persona più socievole del mondo.\r\n\r\nÈ quasi sempre in Superficie, ma in genere torna regolarmente a Speranza.",
@@ -3206,7 +3206,7 @@
       "nameIT": "Mantenere il ricordo",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "I lost my cool a bit when I sent you after that trap. I don’t usually lose my temper, but the First Wave… We went through a lot, back then. Lost a lot of people. It’s still a bit of a raw wound for me, but I want you to understand. ",
       "descriptionIT": "Ho perso un po' la calma quando ti ho mandato a cercare quella trappola. Di solito non perdo la calma, ma la Prima ondata... Ne abbiamo passate tante, all'epoca. Abbiamo perso molte persone. È ancora una ferita aperta per me, ma voglio che tu capisca.",
@@ -3256,7 +3256,7 @@
       "nameIT": "Ultima voce",
       "trader": "shani",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "More mentions of MANTIKOR, and more clear signs of dissent among the researchers. I suspect tensions eventually escalated.",
       "descriptionIT": "Altri riferimenti alla MANTIKOR e altri chiari segni di dissenso tra i ricercatori. Sospetto che le tensioni alla fine siano esplose.",
@@ -3310,7 +3310,7 @@
       "nameIT": "Vita di una farmacista",
       "trader": "lance",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "This place could use a makeover, but I don’t want it looking like your raggedy Raider Dens. See if you can find out how my fellow medical greats used to live. ",
       "descriptionIT": "Questo posto avrebbe bisogno di una messa a posto, ma non voglio che assomigli al tuo lurido covo da Raider. Vedi se scopri come vivevano i miei grandi colleghi medici. ",
@@ -3368,7 +3368,7 @@
       "nameIT": "Linea nella sabbia",
       "trader": "celeste",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "That Stella Montis hard drive contained more than just the shutdown documentation - it also had the transport schedules of some pretty critical Exodus components.",
       "descriptionIT": "Il disco rigido di Stella Montis non conteneva solo la documentazione per lo spegnimento, ma anche i programmi di trasporto di alcuni componenti critici dell'Esodo.",
@@ -3422,7 +3422,7 @@
       "nameIT": "Perduto nella trasmissione",
       "trader": "shani",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "I have equipment set up at the Spaceport, to monitor ARC’s movements. My connection broke down just now — I need you to head to the Control Towers and help me retrieve my logs.",
       "descriptionIT": "Ho l'equipaggiamento pronto allo Spazioporto per monitorare i movimenti dell'ARC. La mia connessione si è interrotta poco fa: mi serve che tu vada alle Torri di controllo e mi aiuti a recuperare i registri.",
@@ -3466,9 +3466,9 @@
       "metaforgeId": "marked-for-death",
       "name": "Marked for Death",
       "nameIT": "Segnato per la morte",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "Someone has been lifting supplies from my drop-off point in Buried City. I’ve set up a trap, but I need someone to check it for me.",
       "descriptionIT": "Qualcuno ha prelevato dei rifornimenti dal mio punto di consegna nella Città sepolta. Ho piazzato una trappola, ma ho bisogno di qualcuno che la controlli per me.",
@@ -3512,9 +3512,9 @@
       "metaforgeId": "market-correction",
       "name": "Market Correction",
       "nameIT": "Correzione di mercato",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "That theft before? Doesn’t look like a coincidence anymore. Some of the competition from Toledo is setting up shop where they don’t belong. I want their cache sabotaged, preferably before they get too comfortable.",
       "descriptionIT": "Quel furto di prima? Non sembra più una coincidenza. Alcuni concorrenti di Toledo si stanno insediando dove non dovrebbero. Voglio che la loro scorta venga sabotata, preferibilmente prima che si sentano troppo a loro agio.",
@@ -3560,9 +3560,9 @@
       "nameIT": "Merce medica",
       "trader": "lance",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "dam_battlegrounds"
+        "buried-city",
+        "spaceport",
+        "dam"
       ],
       "description": "I’ve become quite crafty at weaving bandages from Fabric, but to my shame, I haven’t quite mastered weaving an x-ray machine or a pulse oximiter.",
       "descriptionIT": "Ormai sono abbastanza abile nel tessere bende con la stoffa, ma non sono ancora riuscita a tessere una macchina a raggi X o un saturimetro.",
@@ -3612,11 +3612,11 @@
       "nameIT": "Segnali ambigui",
       "trader": "shani",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "the_blue_gate",
-        "dam_battlegrounds",
-        "riven_tide"
+        "buried-city",
+        "spaceport",
+        "blue-gate",
+        "dam",
+        "riven-tides"
       ],
       "description": "Have you spotted any Surveyors; the big round ones? \n\nThey seem to be transmitting data back into orbit, and I can’t help but think it's tied to that signal we picked up. Will you break one open, so we can try to decipher the data?",
       "descriptionIT": "Hai avvistato qualche Supervisore, quelli grandi e rotondi? Sembra che stiano trasmettendo dati in orbita e non posso fare a meno di pensare che siano legati al segnale che abbiamo rilevato. Vuoi aprirne uno, così possiamo provare a decifrare i dati?",
@@ -3663,7 +3663,7 @@
       "nameIT": "Serata film",
       "trader": "apollo",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "Everyone's been on edge ever since rumors of that ARC signal spread. I was thinking a movie night would be a great distraction, but I'm missing some crucial supplies. You'll help me out, yeah?",
       "descriptionIT": "Tutti sono tesissimi da quando circolano voci sulla diffusione del segnale ARC. Stavo pensando che una serata film sarebbe una bella distrazione, ma mi mancano alcune risorse essenziali. Mi aiuti?",
@@ -3836,10 +3836,10 @@
       "nameIT": "Fuori dal radar",
       "trader": "shani",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "dam_battlegrounds",
-        "riven_tide"
+        "buried-city",
+        "spaceport",
+        "dam",
+        "riven-tides"
       ],
       "description": "The damage down here was pretty bad, but our Topside infrastructure was hit even harder. I still have several antennas that stopped working after the storm.",
       "descriptionIT": "I danni qui sotto sono stati gravi, ma in Superficie è andata anche peggio. Ho ancora diverse antenne fuori uso per la tempesta.",
@@ -3878,7 +3878,7 @@
       "nameIT": "Parole al vento",
       "trader": "lance",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "Seems like every other Raider here has some serious hearing damage.\r\n\r\nI heard rumors they developed some extra advanced hearing aids at Stella Montis. If you can track them down, we might all be able to use our indoor voices, for once.",
       "descriptionIT": "Sembra che un Raider su due qui abbia seri danni all'udito.\r\n\r\nHo sentito voci secondo cui a Stella Montis avrebbero sviluppato apparecchi acustici estremamente avanzati. Se riesci a rintracciarli, magari potremo tutti tenere finalmente un tono di voce normale.",
@@ -3929,7 +3929,7 @@
       "nameIT": "Sulla mappa",
       "trader": "lance",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "We know the coordinates for those hearing aids, but I’ll have to cross-reference them with a paper map of the Spaceport. Those legs of yours aren’t too tired, are they?",
       "descriptionIT": "Conosciamo le coordinate di quegli apparecchi acustici, ma dovrò incrociarle con una mappa cartacea dello Spazioporto. Le tue gambe non sono troppo stanche, vero?",
@@ -3987,7 +3987,7 @@
       "nameIT": "La nostra presenza lassù",
       "trader": "shani",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "ARC may be changing, but we’re finally changing with it. Let’s finish up those outposts and revolutionize the way we track them, flank them, and smash them to bits.",
       "descriptionIT": "L'ARC sta cambiando, ma noi stiamo finalmente cambiando con loro. Finiamo quegli avamposti e rivoluzioniamo il modo in cui li seguiamo, li aggiriamo e li facciamo a pezzi.",
@@ -4037,11 +4037,11 @@
       "nameIT": "Fuori dall'ombra",
       "trader": "shani",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "the_blue_gate",
-        "dam_battlegrounds",
-        "riven_tide"
+        "buried-city",
+        "spaceport",
+        "blue-gate",
+        "dam",
+        "riven-tides"
       ],
       "description": "Did you see the flags? The time for cowering is over. You’ve been more than battle-tested, from what I hear; think you can take on a Rocketeer?",
       "descriptionIT": "Hai visto le bandiere? Il tempo per nascondersi è finito. Da quello che ho sentito, hai superato il battesimo del fuoco; pensi di poter affrontare un Lanciarazzi?",
@@ -4087,9 +4087,9 @@
       "metaforgeId": "outstanding-balance",
       "name": "Outstanding Balance",
       "nameIT": "Saldo inevaso",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "I had a deal for a Bastion Cell lined up with a Raider called Dodger, but he's gone quiet. \r\n\r\nI need someone to track down his stash before some scavenger stumbles into it. Interested?",
       "descriptionIT": "Avevo un accordo per una cella di un Bastione con un Raider di nome Dodger, ma è sparito nel nulla. \r\n\r\nHo bisogno di qualcuno che rintracci il suo deposito prima che qualche rovistatore ci si imbatta. T'interessa?",
@@ -4139,9 +4139,9 @@
       "nameIT": "Apripista",
       "trader": "apollo",
       "map": [
-        "the_blue_gate",
-        "buried_city",
-        "dam_battlegrounds"
+        "blue-gate",
+        "buried-city",
+        "dam"
       ],
       "description": "For an entire sector to collapse like that… No wonder people are scared. We need to reinforce beyond anything we’ve done before, and we can’t do it alone.",
       "descriptionIT": "Che un intero settore crolli in quel modo... Non c'è da stupirsi che la gente abbia paura. Dobbiamo rinforzare più di quanto abbiamo mai fatto prima, e non possiamo farlo da soli.",
@@ -4233,7 +4233,7 @@
       "nameIT": "Blackout",
       "trader": "celeste",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "This goes beyond bad luck. Something—or someone—has knocked out some of our electrical substations. The engineer I sent out to fix it hasn’t returned, so I need all available Raiders to look into it. That includes you.",
       "descriptionIT": "Questo va oltre la sfortuna. Qualcosa o qualcuno ha messo fuori uso alcune delle nostre sottostazioni elettriche. L'ingegnere che ho mandato a ripararle non è tornato, quindi ho bisogno di tutti i Raider disponibili per risolvere la situazione. Il che include anche te.",
@@ -4291,7 +4291,7 @@
       "nameIT": "Ricette del passato",
       "trader": "lance",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "I’ve been curious about the medical area in the Spaceport for a while now. Something tells me it’s got just what I need to become the undeniable champion of this place.",
       "descriptionIT": "È da un po' che mi incuriosisce quell'area medica nello Spazioporto. Qualcosa mi dice che ha tutto ciò che mi serve per poter assurgere a indiscutibile custode di questo posto.",
@@ -4341,7 +4341,7 @@
       "nameIT": "Ridotto in macerie",
       "trader": "shani",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "That collapsed highway worries me; it looks to be recent. Much of Topside may be in ruins, but most of it is from ages ago.",
       "descriptionIT": "Quell'autostrada crollata mi preoccupa... Sembra essere recente. È vero che gran parte della Superficie è distrutta, ma risale quasi tutto a secoli fa.",
@@ -4395,7 +4395,7 @@
       "nameIT": "Rovine e riverberi",
       "trader": "celeste",
       "map": [
-        "pendola_pass"
+        "pendola-pass"
       ],
       "description": "That Emperor didn’t just trip and fall… It was brought down. And I have a leading theory about how that happened.",
       "descriptionIT": "Quell'Imperatore non è semplicemente inciampato e caduto... È stato abbattuto. E ho una teoria su come sia successo.",
@@ -4447,9 +4447,9 @@
       "metaforgeId": "safe-harbor",
       "name": "Safe Harbor",
       "nameIT": "Porto sicuro",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "riven_tide"
+        "riven-tides"
       ],
       "description": "Seems like news of the train derailment spread fast… And drove many workers to stash some very tasty technology away from prying eyes.",
       "descriptionIT": "Sembra che la notizia del deragliamento del treno si sia diffusa in fretta... E abbia spinto molti lavoratori a nascondere della tecnologia molto preziosa lontano da occhi indiscreti.",
@@ -4541,7 +4541,7 @@
       "metaforgeId": "settled-in-full",
       "name": "Settled in Full",
       "nameIT": "Saldato completamente",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": null,
       "description": "Lucky for you, Dodger's debt can still be settled. Bring me a Bastion Cell. A real one, pulled from a real Bastion. Consider what Dodger owed me transferred to credit for you. Okay?",
       "descriptionIT": "Per tua fortuna, il debito di Dodger può ancora essere saldato. Portami una cella di un Bastione. Una vera, presa da un vero Bastione. Considera il debito di Dodger trasferito come credito per te. OK?",
@@ -4574,7 +4574,7 @@
       "nameIT": "Rafforzare le difese",
       "trader": "apollo",
       "map": [
-        "riven_tide"
+        "riven-tides"
       ],
       "description": "The wide-open coastline used to mean danger, but now it's the only place we can spot new threats moving into the Rust Belt.\r\n\r\nSo we'll have to make our own cover, and reinforce what few defenses we can find.",
       "descriptionIT": "Un tempo questo litorale esposto era sinonimo di pericolo, ma ora è l'unico punto da cui possiamo avvistare le nuove minacce che avanzano verso la Cintura di ruggine.\r\n\r\nQuindi dovremo crearci una copertura e rafforzare le poche difese che riusciamo a trovare.",
@@ -4628,7 +4628,7 @@
       "nameIT": "Valutare le dimensioni",
       "trader": "celeste",
       "map": [
-        "pendola_pass"
+        "pendola-pass"
       ],
       "description": "Those Emperors were imposing enough from a distance, but to be able to get so up close… If there was ever a time to tread carefully, this would be it.",
       "descriptionIT": "Quegli Imperatori erano già abbastanza imponenti da lontano, ma poterli vedere da così vicino... Se mai ci fosse un momento in cui procedere con cautela, sarebbe proprio questo.",
@@ -4696,9 +4696,9 @@
       "metaforgeId": "snap-and-salvage",
       "name": "Snap and Salvage",
       "nameIT": "Scatta e recupera",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "All of Speranza is buzzing about Stella Montis right now, and I admit it’s caught my attention. Let the others sort out the whats and hows; I’m interested in the tech inside.",
       "descriptionIT": "Tutta Speranza non fa altro che parlare di Stella Montis al momento, e ammetto che ha attirato la mia attenzione. Lasciamo che siano gli altri a occuparsi del cosa e del come: a me interessa la tecnologia che c'è all'interno.",
@@ -4765,7 +4765,7 @@
       "nameIT": "Nei panni di qualcun altro",
       "trader": "celeste",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "Those androids around Stella Montis… It seems they were test subjects as much as they were assistants. There’s some encrypted research notes about a… Project Pathos.",
       "descriptionIT": "Quegli androidi a Stella Montis... Sembra che fossero tanto cavie quanto assistenti. Ci sono alcune note di ricerca cifrate riguardo a un certo... Progetto Pathos.",
@@ -4815,7 +4815,7 @@
       "nameIT": "Origine della contaminazione",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "I’m not saying our water’s been tampered with, but based on your samples, I can’t rule out the possibility either. Would you return to the Dam and see what’s wrong?",
       "descriptionIT": "Non sto dicendo che la nostra acqua sia stata alterata, ma in base ai tuoi campioni non posso nemmeno escluderlo. Potresti tornare alla Diga per vedere cosa c'è che non va?",
@@ -4907,9 +4907,9 @@
       "metaforgeId": "stable-housing",
       "name": "Stable Housing",
       "nameIT": "Alloggio stabile",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "You like a certain amount of uncertainty, right? A client wants the contents of a locked safe in Stella Montis. It's intact, so whatever's inside has been there since before the Exodus. Interested?",
       "descriptionIT": "A te piace un po' di incertezza, no? Un cliente vuole il contenuto di una cassaforte chiusa a Stella Montis. È intatta, quindi qualsiasi cosa ci sia dentro è lì dall'Esodo. Ti può interessare?",
@@ -4975,7 +4975,7 @@
       "nameIT": "Chiara verità",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "Back during the First Wave, my squad and I built a trap out by the Dam. Overloaded a generator, turned it into a makeshift ARC trap. Now I hear Raiders are using it to cut comms and spring ambushes on each other. I need you to end it.",
       "descriptionIT": "Durante la Prima ondata, io e la mia squadra abbiamo costruito una trappola vicino alla Diga. Abbiamo sovraccaricato un generatore e lo abbiamo trasformato in una trappola ARC di fortuna. Ora ho sentito che i Raider la usano per interrompere le comunicazioni e tendersi imboscate a vicenda. Ho bisogno che tu ponga fine a tutto questo.",
@@ -5033,7 +5033,7 @@
       "nameIT": "Cambio di carico",
       "trader": "celeste",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "There is a reservoir beneath the Spaceport; if we manage to route that water here, that should buy us time to deal with the contamination.",
       "descriptionIT": "C'è un serbatoio sotto lo Spazioporto: se riusciamo a portare qui quell'acqua, dovremmo guadagnare tempo per affrontare la contaminazione.",
@@ -5077,12 +5077,12 @@
       "metaforgeId": "taking-stock",
       "name": "Taking Stock",
       "nameIT": "Il punto della situazione",
-      "trader": "cassio",
+      "trader": "nomadic-envoy",
       "map": [
-        "stella_montis",
-        "the_spaceport",
-        "dam_battlegrounds",
-        "buried_city"
+        "stella-montis",
+        "spaceport",
+        "dam",
+        "buried-city"
       ],
       "description": "On the surface, our paths seldom cross by design. After all, your presence draws more eyes than ours can afford.",
       "descriptionIT": "In apparenza, è voluto che le nostre strade si incrocino raramente. Dopotutto, la tua presenza attira più occhi di quanti possiamo permetterci.",
@@ -5188,8 +5188,8 @@
       "nameIT": "Il sogno puro",
       "trader": "apollo",
       "map": [
-        "the_spaceport",
-        "the_blue_gate"
+        "spaceport",
+        "blue-gate"
       ],
       "description": "You know what I've been dreaming of lately? A talking water distiller! Crazy, huh? But seriously, with purer compounds I could make explosives with more oumph! Would be something, right?",
       "descriptionIT": "Sai cosa ho sognato ultimamente? Un distillatore d'acqua parlante! Pazzesco, eh? Ma, parlando seriamente, con composti più puri potrei creare esplosivi più potenti! Sarebbe già qualcosa, no?",
@@ -5255,9 +5255,9 @@
       "nameIT": "I primi Nomadi",
       "trader": "shani",
       "map": [
-        "the_spaceport",
-        "the_blue_gate",
-        "stella_montis"
+        "spaceport",
+        "blue-gate",
+        "stella-montis"
       ],
       "description": "That sphere you spotted in the Outskirts Bunker… They remind me of those eerie contraptions that the Nomads have been leaving in their wake.",
       "descriptionIT": "Quella sfera che hai notato nel Bunker periferico... Mi ricorda quegli inquietanti marchingegni che lasciano indietro i Nomadi.",
@@ -5361,8 +5361,8 @@
       "nameIT": "La Lega",
       "trader": "apollo",
       "map": [
-        "dam_battlegrounds",
-        "buried_city"
+        "dam",
+        "buried-city"
       ],
       "description": "Kids around here have been kicking empty grenade casings around. It’s only a matter of time before they’re not so empty.\r\n\r\nSo here’s the plan. You help me with some prep work, and I’ll set up an actual football team for the young ones.",
       "descriptionIT": "I ragazzi da queste parti prendono a calci i bossoli vuoti delle granate. È solo questione di tempo prima che non siano più vuoti. Quindi, ecco il piano: tu mi aiuti con un po' di preparativi e io metto su una vera squadra di calcio per i più giovani.",
@@ -5431,9 +5431,9 @@
       "metaforgeId": "the-majors-footlocker",
       "name": "The Major’s Footlocker",
       "nameIT": "Il baule del maggiore",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "I have another job. It’s.. about my mom.\n\nThose First Wave sites I sent you to before? I actually hoped you’d find something of my mother’s. She fought in the Raider resistance. It was a long shot; but now I've got an actual lead.",
       "descriptionIT": "Ho un altro lavoro. Riguarda mia madre.\r\n\r\nQuei siti della Prima ondata dove ti ho mandato prima? Speravo che trovassi qualcosa di mia madre. Ha combattuto con la resistenza dei Raider. Era un'ipotesi azzardata, ma ora ho una pista concreta.",
@@ -5469,7 +5469,7 @@
       "metaforgeId": "the-right-tool",
       "name": "The Right Tool",
       "nameIT": "Lo strumento adatto",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": null,
       "description": "You're one of the new arrivals, right? I need a volunteer to test out this upgraded Ferro; should cut through ARC plating like butter. Go put holes in some machines, and report back to me.",
       "descriptionIT": "Fai parte dei nuovi arrivati, vero? Ho bisogno di un volontario per testare questo Ferro potenziato; dovrebbe tagliare la placcatura ARC come il burro. Vai a bucare qualche macchina e fammi sapere.",
@@ -5519,7 +5519,7 @@
       "nameIT": "La radice della questione",
       "trader": "celeste",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "We're in luck. The notes you found last time were written by the lead researcher. When the project went under, it seems she took some of the seed samples and sealed them away in a secure location.",
       "descriptionIT": "Siamo fortunati. Gli appunti che hai trovato l'ultima volta sono stati scritti dalla ricercatrice capo. Quando il progetto è fallito, sembra che abbia preso alcuni campioni di semi e li abbia nascosti in un luogo sicuro.",
@@ -5561,7 +5561,7 @@
       "nameIT": "Il fetore della corruzione",
       "trader": "shani",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "That key you found in the barrel truck… I won’t jump to accusations just yet, but this certainly reeks of an inside job. Could you investigate a hunch I have?",
       "descriptionIT": "La chiave che hai trovato nel camion... Non voglio puntare il dito contro nessuno, ma mi puzza di sabotaggio interno. Potresti indagare su un mio sospetto?",
@@ -5628,10 +5628,10 @@
       "nameIT": "La trifetta",
       "trader": "shani",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "the_blue_gate",
-        "dam_battlegrounds"
+        "buried-city",
+        "spaceport",
+        "blue-gate",
+        "dam"
       ],
       "description": "Intel’s all well and good, but it only gets us so far. If ARC’s truly closing in, I need every Raider to prove they can handle their drones in a fight.",
       "descriptionIT": "Le informazioni vanno benone, ma ci aiutano solo fino a un certo punto. Se l'ARC si sta davvero avvicinando, ho bisogno che ogni Raider dimostri di saper gestire i propri droni in un combattimento.",
@@ -5850,7 +5850,7 @@
       "nameIT": "Tracce della bestia",
       "trader": "shani",
       "map": [
-        "pendola_pass"
+        "pendola-pass"
       ],
       "description": "The stretch from the Northern tracks to the Emperor is crawling with unfamiliar ARC units. I need eyes on them, or we might be stepping into a death trap before we can even begin to breach the Emperor.",
       "descriptionIT": "Il tratto che va dalle tracce settentrionali all'Imperatore pullula di unità ARC sconosciute. Ho bisogno di qualcuno che le tenga d'occhio, altrimenti potremmo finire in una trappola mortale prima ancora di riuscire a fare breccia nell'Imperatore.",
@@ -6002,7 +6002,7 @@
       "nameIT": "Dietrofront",
       "trader": "celeste",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "I got a plan. If we recover the evidence against the OTTM before they get to it, we might get them off our backs once and for all.",
       "descriptionIT": "Ho un piano. Se recuperiamo le prove contro la GUM prima che lo facciano loro, potremmo toglierceli di torno una volta per tutte.",
@@ -6046,9 +6046,9 @@
       "metaforgeId": "unexpected-initiative",
       "name": "Unexpected Initiative",
       "nameIT": "Iniziativa inaspettata",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "buried_city"
+        "buried-city"
       ],
       "description": "I’m setting up a greenhouse, to help boost our food production. I’m doing Celeste a solid, alright? That’s all. But enough about that. I’ve got all the details worked out, but I’ll need supplies, and I’m not hauling them alone.",
       "descriptionIT": "Sto allestendo una serra per aumentare la nostra produzione di cibo. Sto facendo un favore a Celeste, va bene? Tutto qui. Ma basta parlare di questo. Ho già definito tutti i dettagli, ma avrò bisogno di rifornimenti e non li trasporterò da solo.",
@@ -6120,7 +6120,7 @@
       "nameIT": "Giardino incolto",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "According to the files you found in the lab, the cultivation researchers were actually the ones who set up the hydroponic domes out in the swamp. Sounds like the most obvious place to search next, don’t you think?",
       "descriptionIT": "Secondo i documenti che hai trovato nel laboratorio, i ricercatori della coltivazione erano in realtà quelli che avevano allestito le cupole idroponiche nella palude. Sembra il posto più ovvio in cui cercare, no?",
@@ -6170,7 +6170,7 @@
       "nameIT": "Risvegliare la Griglia",
       "trader": "shani",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "There's a problem with our sensor coverage at the Spaceport. The security grid is old, so maybe it's just acting up. If you could get it running again, it'd save me a lot of sleepless nights.",
       "descriptionIT": "C'è un problema con la copertura dei sensori dello Spazioporto. La griglia di sicurezza è vecchia, quindi forse sta facendo i capricci. Se riuscissi a rimetterla in funzione, mi risparmieresti molte notti insonni.",
@@ -6220,7 +6220,7 @@
       "nameIT": "Problemi idrici",
       "trader": "celeste",
       "map": [
-        "dam_battlegrounds"
+        "dam"
       ],
       "description": "If you’re here to complain about the water, join the club. I’ve been fielding complaints all day. Something is definitely up with it, and I need some help to sort it out.",
       "descriptionIT": "Se sei qui per lamentarti dell'acqua, mettiti in fila. È tutto il giorno che ricevo lamentele. C'è chiaramente qualcosa che non va e ho bisogno di aiuto per risolverlo.",
@@ -6314,11 +6314,11 @@
       "metaforgeId": "what-we-left-behind",
       "name": "What We Left Behind",
       "nameIT": "Cosa ci siamo lasciati alle spalle",
-      "trader": "tian_wen",
+      "trader": "tian-wen",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "dam_battlegrounds"
+        "buried-city",
+        "spaceport",
+        "dam"
       ],
       "description": "Celeste told me you’re the one who helped her hound me about pitching in more. I’ll say this once: I don’t appreciate the meddling, and I have my own reasons for refusing. I do, however, appreciate the scrap. Since you’re apparently good at tracking it down, I may have a task for you.",
       "descriptionIT": "Celeste mi ha detto che l'hai aiutata a perseguitarmi perché partecipi di più. Lo dirò una volta sola: non apprezzo l'intromissione e ho le mie ragioni per rifiutare. Tuttavia, apprezzo i rottami. Visto che a quanto pare sei abile a trovarli, potrei avere un compito per te.",
@@ -6368,7 +6368,7 @@
       "nameIT": "Quando tutto crolla",
       "trader": "shani",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "The box you found in the MANTIKOR facility contained specialized radios, encrypted using geotags.\r\n\r\nAnd the coordinates… They start right where the mutineers stashed their weapons.",
       "descriptionIT": "La scatola che hai trovato nella struttura MANTIKOR conteneva radio specializzate, crittografate tramite geotag. E le coordinate... Partono proprio dal punto in cui gli ammutinati hanno nascosto le armi.",
@@ -6442,9 +6442,9 @@
       "nameIT": "Fili incrociati",
       "trader": "celeste",
       "map": [
-        "buried_city",
-        "the_spaceport",
-        "the_blue_gate"
+        "buried-city",
+        "spaceport",
+        "blue-gate"
       ],
       "description": "That contraption you found at the Observatory… There wasn’t much data left to read, but the signature was undeniably ARC’s.",
       "descriptionIT": "Quell'aggeggio che hai trovato all'Osservatorio... Non c'erano molti dati da leggere, ma la firma era innegabilmente dell'ARC.",
@@ -6498,7 +6498,7 @@
       "nameIT": "Con una traccia",
       "trader": "shani",
       "map": [
-        "the_blue_gate"
+        "blue-gate"
       ],
       "description": "That downed machine… We weren’t the ones who did that. We know that there are stray survivors out there, but this? This goes far beyond a single person.",
       "descriptionIT": "Quella macchina abbattuta... Non siamo stati noi. Sappiamo che c'è qualche sopravvissuto là fuori, ma una roba del genere? Non può essere stata causata da una sola persona.",
@@ -6548,7 +6548,7 @@
       "nameIT": "Con vista",
       "trader": "shani",
       "map": [
-        "stella_montis"
+        "stella-montis"
       ],
       "description": "Have you ever noticed those streaks of light darting across the skies? \r\n\r\nI’ve seen too much to believe they’re natural, but it’ll take more than a hunch to convince Celeste.",
       "descriptionIT": "Hai mai notato quelle scie di luce che sfrecciano nei cieli? \r\n\r\nHo visto troppe cose in vita mia per credere che siano naturali, ma ci vorrà più di un'intuizione per convincere Celeste.",
@@ -6611,7 +6611,7 @@
       "nameIT": "Vale ogni granello di sale",
       "trader": "celeste",
       "map": [
-        "the_spaceport"
+        "spaceport"
       ],
       "description": "I found notes that some electrical engineers at the Spaceport were working on advanced, salt-based batteries. If we can get our hands on one, perhaps it’ll prevent full-scale power outages next time a ceiling comes crashing down.",
       "descriptionIT": "Ho trovato degli appunti di alcuni ingegneri elettronici allo Spazioporto che lavoravano a delle batterie al sale avanzate. Se riusciamo a mettere le mani su una, forse impedirà grosse interruzioni di corrente la prossima volta che un soffitto crolla.",

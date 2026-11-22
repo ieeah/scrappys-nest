@@ -1560,7 +1560,7 @@
         2950,
         1260
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "exodus.svg"
       ]
@@ -1571,7 +1571,7 @@
         2955,
         1520
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "technological.svg",
         "exodus.svg"
@@ -1583,7 +1583,7 @@
         2437,
         1803
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "mechanical.svg",
         "electrical.svg"
@@ -1595,7 +1595,7 @@
         2079,
         2264
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "commercial.svg",
         "medical.svg"
@@ -1607,7 +1607,7 @@
         2225,
         1667
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "nature.svg"
       ]
@@ -1618,7 +1618,7 @@
         1849,
         1772
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "commercial.svg"
       ]
@@ -1629,7 +1629,7 @@
         2617,
         2524
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "industrial.svg",
         "mechanical.svg"
@@ -1641,7 +1641,7 @@
         1583,
         2166
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "industrial.svg",
         "mechanical.svg"
@@ -1653,7 +1653,7 @@
         1405,
         2559
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "residential.svg",
         "old-world.svg"
@@ -1665,7 +1665,7 @@
         2094,
         869
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "residential.svg"
       ]
@@ -1676,7 +1676,7 @@
         2874,
         2934
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "industrial.svg",
         "exodus.svg"
@@ -1688,7 +1688,7 @@
         1093,
         2090
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "ARC.svg"
       ]
@@ -1699,7 +1699,7 @@
         2728,
         3574
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": [
         "old-world.svg"
       ]
@@ -1710,7 +1710,7 @@
         1923,
         1380
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": []
     },
     {
@@ -1719,7 +1719,7 @@
         1645,
         1668
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": []
     },
     {
@@ -1728,7 +1728,7 @@
         3006,
         3476
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": []
     },
     {
@@ -1737,7 +1737,7 @@
         2951,
         2056
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": []
     },
     {
@@ -1746,7 +1746,7 @@
         2709,
         2403
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": []
     },
     {
@@ -1755,7 +1755,7 @@
         2098,
         2680
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": []
     },
     {
@@ -1764,7 +1764,7 @@
         2370,
         3444
       ],
-      "layer": "surface",
+      "layer": "pendola-pass",
       "icons": []
     }
   ]

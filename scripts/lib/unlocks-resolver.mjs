@@ -5,8 +5,12 @@
  * nel catalogo degli oggetti.
  */
 
+const DESIGN_ALIASES = {
+  'study-armchair-design-res-sofa-01-y150-a': 'study-armchair',
+};
+
 function isBlueprint(item) {
-  if (!item) return false;
+  if (!item || item.item_type === 'Trinket') return false;
   return (
     item.item_type === 'Blueprint' ||
     item.subcategory === 'Blueprint' ||
@@ -17,6 +21,10 @@ function isBlueprint(item) {
 function isDesign(item) {
   if (!item) return false;
   return item.item_type === 'Design' || item.subcategory === 'Design';
+}
+
+function isNonBaseVariant(id) {
+  return id.startsWith('amplified-') || /-(ii|iii|iiii|iv)$/.test(id);
 }
 
 /**
@@ -36,8 +44,11 @@ export function resolveUnlocksItemId(item, itemsMap, baseItemsMap = {}) {
 
   // 1. Logica per Design (arredi / personalizzazione rifugio)
   if (isDesign(item)) {
-    const strippedId = item.id.replace(/-design$/, '');
-    if (itemsMap[strippedId]) {
+    if (DESIGN_ALIASES[item.id] && itemsMap[DESIGN_ALIASES[item.id]]) {
+      return DESIGN_ALIASES[item.id];
+    }
+    const strippedId = item.id.replace(/-design$/, '').replace(/-design-/, '-');
+    if (strippedId !== item.id && itemsMap[strippedId] && !isDesign(itemsMap[strippedId])) {
       return strippedId;
     }
     return null;
@@ -45,21 +56,23 @@ export function resolveUnlocksItemId(item, itemsMap, baseItemsMap = {}) {
 
   // 2. Casi speciali noti per Blueprint
   if (item.id === 'combat-mk-3-flanking') {
-    return 'combat-mk-3-aggressive';
+    return 'combat-mk3-flanking';
   }
 
   // 3. Verifica corrispondenza con baseItems (armi con varianti o ricette mappate)
   const bases = Object.values(baseItemsMap.baseItems ?? baseItemsMap);
   for (const base of bases) {
     if (base && base.blueprintItemId === item.id) {
+      if (base.id && itemsMap[base.id] && !isBlueprint(itemsMap[base.id])) {
+        return base.id;
+      }
       if (Array.isArray(base.variantItemIds)) {
         const tier1 = base.variantItemIds.find(vId => vId.endsWith('-i') && itemsMap[vId]);
         if (tier1) return tier1;
-        const anyVariant = base.variantItemIds.find(vId => itemsMap[vId]);
-        if (anyVariant) return anyVariant;
+        const baseVariant = base.variantItemIds.find(vId => !isNonBaseVariant(vId) && itemsMap[vId]);
+        if (baseVariant) return baseVariant;
       }
-      if (itemsMap[base.id]) return base.id;
-      if (base.id) return base.id;
+      return null;
     }
   }
 

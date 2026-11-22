@@ -62,7 +62,8 @@ describe('baseItems logic', () => {
     expect(isBaseItem('anvil')).toBe(true);
     expect(isBaseItem('amplification-module')).toBe(true);
     expect(isBaseItem('anvil-i')).toBe(false);
-    expect(isBaseItem('dolabra')).toBe(false);
+    expect(isBaseItem('dolabra')).toBe(true);
+    expect(isBaseItem('non-existent-item')).toBe(false);
 
     expect(isVariantItem('anvil-i')).toBe(true);
     expect(isVariantItem('anvil-iv')).toBe(true);

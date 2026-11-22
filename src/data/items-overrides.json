@@ -1,4 +1,7 @@
 {
+  "anvil-splitter": {
+    "deprecated": true
+  },
   "bison-driver": {
     "hidden": true
   },

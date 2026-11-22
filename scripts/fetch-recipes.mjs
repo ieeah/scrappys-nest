@@ -23,6 +23,11 @@ const REFRESH = process.argv.includes('--refresh');
 const RAW_CACHE_PATH = join(__dirname, 'arctracker-raw.json');
 const OUTPUT_PATH = join(__dirname, '../src/data/recipes.json');
 const ITEMS_JSON_PATH = join(__dirname, '../src/data/items.json');
+const UPSTREAM_ALIASES_PATH = join(__dirname, 'data', 'upstream-aliases.json');
+
+const UPSTREAM_ALIASES = existsSync(UPSTREAM_ALIASES_PATH)
+  ? JSON.parse(readFileSync(UPSTREAM_ALIASES_PATH, 'utf-8'))
+  : {};
 
 // Mappa alias per discrepanze di nomenclatura tra ARC Tracker e il nostro catalogo
 const ID_ALIASES = {
@@ -37,6 +42,7 @@ const ID_ALIASES = {
   'burletta-iii': 'burletta-iiii',
   'il_toro_iii': 'il-toro-iiii',
   'il-toro-iii': 'il-toro-iiii',
+  ...(UPSTREAM_ALIASES.recipes ?? {}),
 };
 
 /** Normalizza un ID generico in hyphen-case con risoluzione degli alias e formato amplified */

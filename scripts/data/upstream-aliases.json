@@ -1,0 +1,58 @@
+{
+  "recipes": {
+    "aphelion": "aphelion-rifle",
+    "bantam-i": "bantam",
+    "basic-camera": "camera",
+    "bastion-cell": "bastion-part",
+    "canto-i": "canto",
+    "combat-mk1": "combat-mk-1",
+    "combat-mk2": "combat-mk-2",
+    "combat-mk3-aggressive": "combat-mk-3-aggressive",
+    "damaged-hornet-driver": "danaged-hornet-driver",
+    "damaged-rocketeer-driver": "damaged-rocketeer-part",
+    "diving-goggles": "diving-googles",
+    "energy-clip": "energy-ammo",
+    "equalizer": "equalizer-i",
+    "extended-barrel-iii": "extended-barrel",
+    "jupiter": "jupiter-i",
+    "looting-mk1": "looting-mk-1",
+    "looting-mk2": "looting-mk-2",
+    "looting-mk3-cautious": "looting-mk-3-cautious",
+    "looting-mk3-safekeeper": "looting-mk-3-safekeeper",
+    "looting-mk3-survivor": "looting-mk-3-survivor",
+    "portable-tv": "portable-television",
+    "rascal-i": "rascal",
+    "res-sofa-01-y150-a": "study-armchair",
+    "sentinel-firing-core": "sentinel-part",
+    "smoke-grenade-trap": "laser-trap-smoke",
+    "stiletto-i": "stiletto",
+    "tactical-mk1": "tactical-mk-1",
+    "tactical-mk2": "tactical-mk-2",
+    "tactical-mk3-healing": "tactical-mk-3-healing",
+    "tactical-mk3-revival": "tactical-mk-3-revival",
+    "tactical-mk3-smoke": "tactical-mk-3-smoke",
+    "trailblazer": "trailblazer-grenade"
+  },
+  "quests": {
+    "burltetta": "burletta-i"
+  },
+  "research": {
+    "sprint-shooting": "mobile-fire-grip-fittings"
+  },
+  "traders": {
+    "tian wen": "tian-wen",
+    "tianwen": "tian-wen",
+    "tian_wen": "tian-wen",
+    "cassio": "nomadic-envoy",
+    "ermal": "nomadic-envoy"
+  },
+  "maps": {
+    "dam_battlegrounds": "dam",
+    "buried_city": "buried-city",
+    "the_spaceport": "spaceport",
+    "the_blue_gate": "blue-gate",
+    "riven_tide": "riven-tides",
+    "pendola_pass": "pendola-pass",
+    "stella_montis": "stella-montis"
+  }
+}

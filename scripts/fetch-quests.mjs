@@ -28,31 +28,137 @@ const ARCTRACKER_CACHE = join(__dirname, 'arctracker-raw.json');
 
 const QUESTS_SOURCE_PATH = join(ROOT, 'src', 'data', 'quests-source.json');
 const QUESTS_JSON_PATH = join(ROOT, 'src', 'data', 'quests.json');
+const QUESTS_OVERRIDES_PATH = join(ROOT, 'src', 'data', 'quests-overrides.json');
 const AMP_RESEARCH_PATH = join(ROOT, 'src', 'data', 'weapon-amplification-research.json');
+const UPSTREAM_ALIASES_PATH = join(__dirname, 'data', 'upstream-aliases.json');
+
+const UPSTREAM_ALIASES = existsSync(UPSTREAM_ALIASES_PATH)
+  ? JSON.parse(readFileSync(UPSTREAM_ALIASES_PATH, 'utf-8'))
+  : {};
 
 const TRADER_MAP = {
   celeste: 'celeste',
   shani: 'shani',
   apollo: 'apollo',
-  'tian wen': 'tian_wen',
-  tianwen: 'tian_wen',
   lance: 'lance',
-  ermal: 'ermal',
 };
 
 function normalizeTrader(rawTrader) {
   const norm = String(rawTrader || '').toLowerCase().trim();
-  return TRADER_MAP[norm] || norm.replace(/\s+/g, '_');
+  return UPSTREAM_ALIASES.traders?.[norm] || TRADER_MAP[norm] || norm.replace(/[\s_]+/g, '-');
+}
+
+function normalizeMap(rawMap) {
+  if (!rawMap) return null;
+  if (Array.isArray(rawMap)) {
+    const normalized = rawMap.map((m) => normalizeMap(m)).filter(Boolean);
+    return normalized.length > 0 ? normalized : null;
+  }
+  const norm = String(rawMap).toLowerCase().trim();
+  return UPSTREAM_ALIASES.maps?.[norm] || norm.replace(/_/g, '-');
 }
 
 function normalizeItemId(rawId) {
   if (!rawId) return 'unknown';
   const id = String(rawId).toLowerCase().trim().replace(/_/g, '-');
   // Se finisce con -recipe o -blueprint ma è un comune materiale, rimuovi il suffisso
-  if (id.endsWith('-recipe') && !id.includes('blueprint')) {
-    return id.replace(/-recipe$/, '');
+  const cleanId = id.endsWith('-recipe') && !id.includes('blueprint')
+    ? id.replace(/-recipe$/, '')
+    : id;
+  return UPSTREAM_ALIASES.quests?.[cleanId] || cleanId;
+}
+
+function mergeTranslations(base = {}, override = {}) {
+  const merged = { ...base };
+  for (const [lang, fields] of Object.entries(override)) {
+    if (fields && typeof fields === 'object') {
+      merged[lang] = { ...(merged[lang] ?? {}), ...fields };
+    }
   }
-  return id;
+  return merged;
+}
+
+function mergeActions(baseActions = [], overrideActions) {
+  if (!overrideActions) return baseActions;
+  // Supporta sia array di patch con `id` sia mappa `{ [actionId]: patch }`
+  const patches = Array.isArray(overrideActions)
+    ? overrideActions
+    : Object.entries(overrideActions).map(([id, fields]) => ({ id, ...fields }));
+
+  const result = baseActions.map((a) => ({ ...a }));
+  for (const patch of patches) {
+    if (!patch?.id) continue;
+    const idx = result.findIndex((a) => a.id === patch.id);
+    if (idx === -1) {
+      result.push(patch);
+      continue;
+    }
+    const base = result[idx];
+    result[idx] = {
+      ...base,
+      ...patch,
+      ...(base.translations || patch.translations
+        ? { translations: mergeTranslations(base.translations, patch.translations) }
+        : {}),
+    };
+  }
+  return result;
+}
+
+/**
+ * Applica gli override manuali da `quests-overrides.json` alle liste generate.
+ * Preserva campi di testata (`trader`, `prerequisites`, `translations`) e merge granulare
+ * su `levels` e `actions` (inclusi `carryItems` e `maps`).
+ */
+function applyQuestOverrides(lists, overrides) {
+  if (!overrides || typeof overrides !== 'object') return { lists, applied: 0 };
+  let applied = 0;
+
+  const updated = lists.map((quest) => {
+    const ovr = overrides[quest.id];
+    if (!ovr || typeof ovr !== 'object') return quest;
+    applied++;
+
+    const { translations: ovrTranslations, levels: ovrLevels, ...headerPatch } = ovr;
+    const merged = {
+      ...quest,
+      ...headerPatch,
+      id: quest.id,
+      ...(quest.translations || ovrTranslations
+        ? { translations: mergeTranslations(quest.translations, ovrTranslations) }
+        : {}),
+    };
+
+    if (ovrLevels) {
+      const levelPatches = Array.isArray(ovrLevels)
+        ? ovrLevels
+        : Object.entries(ovrLevels).map(([lvl, fields]) => ({ level: Number(lvl), ...fields }));
+
+      const nextLevels = (quest.levels ?? []).map((lvl) => ({ ...lvl }));
+      for (const lvlPatch of levelPatches) {
+        const targetLevelNum = lvlPatch.level ?? 1;
+        const idx = nextLevels.findIndex((l) => l.level === targetLevelNum);
+        if (idx === -1) {
+          nextLevels.push({ level: targetLevelNum, requirementItemIds: [], ...lvlPatch });
+          continue;
+        }
+        const baseLvl = nextLevels[idx];
+        const { actions: ovrActions, ...lvlFields } = lvlPatch;
+        nextLevels[idx] = {
+          ...baseLvl,
+          ...lvlFields,
+          ...(baseLvl.actions || ovrActions
+            ? { actions: mergeActions(baseLvl.actions, ovrActions) }
+            : {}),
+        };
+      }
+      merged.levels = nextLevels;
+    }
+
+    return merged;
+  });
+
+  return { lists: updated, applied };
 }
 
 async function fetchMetaForgeQuests(refresh = false) {
@@ -109,9 +215,11 @@ async function main() {
   const rsQuests = arcQuests.filter((q) => q.trader === 'Research Station');
   console.log(`Isolamento delle ${rsQuests.length} ricerche per Stazione di Ricerca (amplificazioni armi)…`);
 
-  const weaponResearchData = rsQuests.map((q) => ({
-    id: normalizeId(q.id),
-    name: q.name?.en || q.id,
+  const weaponResearchData = rsQuests.map((q) => {
+    const rawId = normalizeId(q.id);
+    return {
+      id: UPSTREAM_ALIASES.research?.[rawId] || rawId,
+      name: q.name?.en || q.id,
     translations: {
       it: {
         name: q.name?.it || q.name?.en || q.id,
@@ -122,7 +230,8 @@ async function main() {
       en: obj.en || '',
       it: obj.it || obj.en || '',
     })),
-  }));
+    };
+  });
 
   writeFileSync(AMP_RESEARCH_PATH, JSON.stringify(weaponResearchData, null, 2) + '\n', 'utf-8');
   console.log(`✓ Salvate 15 ricerche armi in ${AMP_RESEARCH_PATH}\n`);
@@ -190,7 +299,7 @@ async function main() {
       name: mf.name,
       nameIT: itName,
       trader,
-      map: arcMatch?.map || null,
+      map: normalizeMap(arcMatch?.map),
       description: mf.description || '',
       descriptionIT: itDesc,
       position: mf.position || { x: 0, y: 0 },
@@ -257,13 +366,28 @@ async function main() {
   writeFileSync(QUESTS_SOURCE_PATH, JSON.stringify(sourcePayload, null, 2) + '\n', 'utf-8');
   console.log(`✓ Generato ${QUESTS_SOURCE_PATH} (${nodes.length} nodi, ${edges.length} archi).`);
 
+  // Applica eventuali override manuali da quests-overrides.json
+  let finalLists = lists;
+  if (existsSync(QUESTS_OVERRIDES_PATH)) {
+    try {
+      const questOverrides = JSON.parse(readFileSync(QUESTS_OVERRIDES_PATH, 'utf-8'));
+      const res = applyQuestOverrides(lists, questOverrides);
+      finalLists = res.lists;
+      if (res.applied > 0) {
+        console.log(`✓ Applicati override manuali a ${res.applied} quest da ${QUESTS_OVERRIDES_PATH}`);
+      }
+    } catch (err) {
+      console.warn(`⚠ Impossibile leggere ${QUESTS_OVERRIDES_PATH}: ${err.message}`);
+    }
+  }
+
   // Scrivi quests.json
   const listsPayload = {
-    lists,
+    lists: finalLists,
   };
 
   writeFileSync(QUESTS_JSON_PATH, JSON.stringify(listsPayload, null, 2) + '\n', 'utf-8');
-  console.log(`✓ Generato ${QUESTS_JSON_PATH} (${lists.length} quest pronte per il modello List).\n`);
+  console.log(`✓ Generato ${QUESTS_JSON_PATH} (${finalLists.length} quest pronte per il modello List).\n`);
 
   console.log('=== Sincronizzazione completata con successo! ===');
 }

@@ -27,7 +27,6 @@ export type GameMap = {
   badge?: string;
   hasMultiFloor?: boolean;
   floors?: MapFloor[];
-  totalPois?: number;
 };
 
 /**
@@ -419,11 +418,20 @@ export function groupQuestPoisByQuest(
     byTitle.set(title, list);
   }
 
+  const lowerMetadata = new Map<string, QuestMetadataMap[string]>();
+  for (const [key, value] of Object.entries(metadata)) {
+    lowerMetadata.set(key.toLowerCase(), value);
+  }
+
   const result: QuestGroupInfo[] = [];
 
   for (const [title, items] of byTitle.entries()) {
     const cleanTitle = title.replace(/\s*\(\d+\/\d+\)\s*$/i, '').trim();
-    const meta = metadata[title] ?? metadata[cleanTitle];
+    const meta =
+      metadata[title] ??
+      metadata[cleanTitle] ??
+      lowerMetadata.get(title.toLowerCase()) ??
+      lowerMetadata.get(cleanTitle.toLowerCase());
 
     const isSequential = meta?.isSequential ?? checkIsSequentialQuest(items);
     const isSingleRaid = meta?.isSingleRaid ?? false;

@@ -21,8 +21,7 @@
         "anvil-i",
         "anvil-ii",
         "anvil-iii",
-        "anvil-iv",
-        "anvil-splitter"
+        "anvil-iv"
       ],
       "blueprintItemId": "anvil-recipe"
     },
@@ -110,7 +109,8 @@
         "burletta-ii",
         "burletta-iiii",
         "burletta-iv"
-      ]
+      ],
+      "blueprintItemId": "burltetta-recipe"
     },
     "canto": {
       "id": "canto",
@@ -127,6 +127,7 @@
         }
       },
       "variantItemIds": [
+        "canto",
         "amplified-canto",
         "amplified-canto-carbine",
         "amplified-canto-incendiary-rounds",
@@ -338,6 +339,7 @@
         }
       },
       "variantItemIds": [
+        "rascal",
         "amplified-rascal",
         "amplified-rascal-high-velocity",
         "amplified-rascal-high-velocity-incendiary-rounds",
@@ -398,7 +400,6 @@
         "amplified-renegade-more-reload",
         "amplified-renegade-more-reload-scoped",
         "amplified-renegade-scoped",
-        "renegade-censer-backpack-attachment",
         "renegade-i",
         "renegade-ii",
         "renegade-iii",
@@ -441,6 +442,7 @@
         }
       },
       "variantItemIds": [
+        "bantam",
         "bantam-ii",
         "bantam-iii",
         "bantam-iv"
@@ -483,7 +485,9 @@
           "description": "Un'arma sperimentale che può sparare un'ampia scarica a corto raggio o essere focalizzata per sparare un raggio di calore concentrato a medio raggio."
         }
       },
-      "variantItemIds": [],
+      "variantItemIds": [
+        "dolabra"
+      ],
       "blueprintItemId": "dolabra-blueprint"
     },
     "ferro": {
@@ -522,6 +526,7 @@
         }
       },
       "variantItemIds": [
+        "stiletto",
         "stiletto-ii",
         "stiletto-iii",
         "stiletto-iv"
@@ -590,7 +595,8 @@
         "torrente-ii",
         "torrente-iii",
         "torrente-iv"
-      ]
+      ],
+      "blueprintItemId": "torrent-i-recipe"
     },
     "venator": {
       "id": "venator",

@@ -96,6 +96,9 @@ export const normalizeTraderId = (trader: TraderId | string): TraderId => {
   if (lower === 'ermal' || lower === 'cassio' || lower === 'nomadic-envoy' || lower === 'nomadic_envoy') {
     return 'nomadic-envoy';
   }
+  if (lower === 'tian_wen' || lower === 'tian wen' || lower === 'tianwen') {
+    return 'tian-wen';
+  }
   return lower as TraderId;
 };
 

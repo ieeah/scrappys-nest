@@ -47,3 +47,6 @@ dev-trash/
 
 # Documenti e report binari locali
 *.pdf
+
+# Seed SQL generato (rigenerabile via node scripts/generate-seed.mjs)
+scripts/db/seed.sql

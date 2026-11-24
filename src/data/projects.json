@@ -902,6 +902,391 @@
       ],
       "startDate": "2026-10-27T00:00:00.000Z",
       "expirationDate": "2026-11-16T00:00:00.000Z"
+    },
+    {
+      "id": "flickering-flames-nov-26",
+      "name": "Flickering Flames (2026)",
+      "translations": {
+        "it": {
+          "name": "Fiamme Tremolanti (2026)"
+        }
+      },
+      "maxLevel": 3,
+      "listType": "project",
+      "levels": [
+        {
+          "level": 1,
+          "requirementItemIds": [
+            {
+              "itemId": "durable-cloth",
+              "quantity": 10
+            },
+            {
+              "itemId": "battery",
+              "quantity": 10
+            },
+            {
+              "itemId": "pop-trigger",
+              "quantity": 5
+            },
+            {
+              "itemId": "candleberries",
+              "quantity": 5
+            }
+          ],
+          "rewards": [
+            {
+              "itemId": "grappling-hook",
+              "quantity": 1
+            },
+            {
+              "itemId": "harmonica",
+              "quantity": 1
+            },
+            {
+              "itemId": "il-toro-iv",
+              "quantity": 1
+            },
+            {
+              "itemId": "shotgun-choke-ii",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "requirementItemIds": [
+            {
+              "itemId": "advanced-electrical-components",
+              "quantity": 5
+            },
+            {
+              "itemId": "silver-teaspoon-set",
+              "quantity": 2
+            },
+            {
+              "itemId": "firefly-burner",
+              "quantity": 5
+            },
+            {
+              "itemId": "candleberries",
+              "quantity": 10
+            }
+          ],
+          "rewards": [
+            {
+              "itemId": "anvil-iv",
+              "quantity": 1
+            },
+            {
+              "itemId": "extended-barrel-ii",
+              "quantity": 1
+            },
+            {
+              "itemId": "tether-launcher",
+              "quantity": 1
+            },
+            {
+              "itemId": "mountaineers-detector",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "requirementItemIds": [],
+          "actions": [
+            {
+              "id": "c9e4b535-3bba-422a-a1c6-defbb7c62632",
+              "label": "Heal 3 Raiders outside your squad or deal 800 damage to fire-wielding ARC",
+              "translations": {
+                "it": {
+                  "label": "Cura 3 Raider al di fuori della tua squadra o infliggi 800 danni agli ARC che utilizzano il fuoco"
+                }
+              }
+            }
+          ],
+          "rewards": [
+            {
+              "itemId": "canto-iv",
+              "quantity": 1
+            },
+            {
+              "itemId": "compensator-iii",
+              "quantity": 1
+            },
+            {
+              "itemId": "angled-grip-iii",
+              "quantity": 1
+            },
+            {
+              "itemId": "padded-stock",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "expirationDate": "2026-12-08T00:00:00.000Z",
+      "startDate": "2026-11-24T00:00:00.000Z"
+    },
+    {
+      "id": "flickering-flames-dec-25",
+      "name": "Flickering Flames (2025)",
+      "translations": {
+        "it": {
+          "name": "Fiamme Tremolanti (2025)"
+        }
+      },
+      "maxLevel": 5,
+      "listType": "project",
+      "levels": [
+        {
+          "level": 1,
+          "requirementItemIds": [
+            {
+              "itemId": "empty-wine-bottle",
+              "quantity": 1,
+              "rewards": [
+                {
+                  "itemId": "firecracker",
+                  "quantity": 5
+                }
+              ]
+            },
+            {
+              "itemId": "plastic-parts",
+              "quantity": 25,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "durable-cloth",
+              "quantity": 5,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "candleberries",
+              "quantity": 20,
+              "rewards": [
+                {
+                  "itemId": "raider-tokens",
+                  "quantity": 50
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "requirementItemIds": [
+            {
+              "itemId": "candle-holder",
+              "quantity": 3,
+              "rewards": [
+                {
+                  "itemId": "red-light-stick-blueprint",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "itemId": "light-bulb",
+              "quantity": 3,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "industrial-battery",
+              "quantity": 1,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "candleberries",
+              "quantity": 50,
+              "rewards": [
+                {
+                  "itemId": "raider-tokens",
+                  "quantity": 50
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "requirementItemIds": [
+            {
+              "itemId": "snap-blast-grenade",
+              "quantity": 5,
+              "rewards": [
+                {
+                  "itemId": "trailblazer-grenade",
+                  "quantity": 3
+                }
+              ]
+            },
+            {
+              "itemId": "duct-tape",
+              "quantity": 10,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "film-reel",
+              "quantity": 1,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "candleberries",
+              "quantity": 60,
+              "rewards": [
+                {
+                  "itemId": "raider-tokens",
+                  "quantity": 50
+                }
+              ]
+            }
+          ],
+          "actions": []
+        },
+        {
+          "level": 4,
+          "requirementItemIds": [
+            {
+              "itemId": "coffee-pot",
+              "quantity": 2,
+              "rewards": [
+                {
+                  "itemId": "vita-spray",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "itemId": "fireball-burner",
+              "quantity": 10,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "water-filter",
+              "quantity": 2,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "candleberries",
+              "quantity": 60,
+              "rewards": [
+                {
+                  "itemId": "raider-tokens",
+                  "quantity": 50
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "requirementItemIds": [
+            {
+              "itemId": "mushroom",
+              "quantity": 7,
+              "rewards": [
+                {
+                  "itemId": "snap-hook",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "itemId": "frying-pan",
+              "quantity": 2,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "music-album",
+              "quantity": 2,
+              "rewards": [
+                {
+                  "itemId": "merits",
+                  "quantity": 1000
+                }
+              ]
+            },
+            {
+              "itemId": "candleberries",
+              "quantity": 70,
+              "rewards": [
+                {
+                  "itemId": "raider-tokens",
+                  "quantity": 50
+                }
+              ]
+            }
+          ],
+          "rewards": [
+            {
+              "itemId": "game-cosmetic-n1079473934",
+              "quantity": 1
+            },
+            {
+              "itemId": "bettina-iii",
+              "quantity": 1
+            },
+            {
+              "itemId": "extended-barrel",
+              "quantity": 1
+            },
+            {
+              "itemId": "kinetic-converter",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "expirationDate": "2026-01-13T00:00:00.000Z",
+      "startDate": "2025-12-16T00:00:00.000Z"
     }
   ]
 }

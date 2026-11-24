@@ -69,3 +69,4 @@ Obiettivo: estrarre tutto il "cervello" dell'applicazione in un modulo TypeScrip
 - **Milestone 2 — Progressione (Settimane 9–14)**: Reward Pass, Collezioni (Blueprint, Design, Stencil), Quest Tracker e Spedizioni.
 - **Milestone 3 — Codex & Mappe (Settimane 15–20)**: Skill Tree interattivo dei Raiders, Codex Nemici ARC / Bestiario, Mappe interattive e rilascio pubblico `1.0.0`.
 - [ ] #159 [Pianificazione massiva da banchi/progetti e salvataggio slice come lista custom](https://github.com/ieeah/arc-benches/issues/159) — possibile implementazione futura / estensione raid nel nuovo portale
+- [ ] #180 [Supporto per Reward Track parallele a punti (Merits) in sola consultazione](https://github.com/ieeah/arc-benches/issues/180) — Progetti ed eventi speciali nel nuovo portale Next.js

@@ -49,4 +49,4 @@ dev-trash/
 *.pdf
 
 # Seed SQL generato (rigenerabile via node scripts/generate-seed.mjs)
-scripts/db/seed.sql
+scripts/db/seed*.sql

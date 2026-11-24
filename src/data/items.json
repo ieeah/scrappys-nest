@@ -25626,6 +25626,24 @@
       }
     }
   },
+  "merits": {
+    "id": "merits",
+    "name": "Merits",
+    "description": "",
+    "icon": "icons/items/merits.webp",
+    "rarity": "Common",
+    "item_type": "Currency",
+    "subcategory": "Progression",
+    "value": null,
+    "workbench": null,
+    "loot_area": "",
+    "stack_size": null,
+    "translations": {
+      "it": {
+        "name": "Meriti"
+      }
+    }
+  },
   "accessories-caposta-variant": {
     "id": "accessories-caposta-variant",
     "name": "Accessories (Caposta Variant)",

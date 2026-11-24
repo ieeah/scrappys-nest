@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARC Raiders × Scrappy's Nest — Design Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Prompt:wght@700;800&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Surfaces */
+      --bg-canvas: #080C16;
+      --bg-radial: radial-gradient(circle at 50% 15%, #131D3B 0%, #080C16 70%);
+      --surface-dark: #0E1322;
+      --surface-dark-glass: rgba(14, 19, 34, 0.86);
+      --surface-slot: #121829;
+      --surface-cream: #EAE0CE;
+      --surface-cream-bright: #F3EAD8;
+      --surface-cream-inset: #D8CEBC;
+      --border-subtle: rgba(255, 255, 255, 0.13);
+      --border-cream: rgba(20, 22, 29, 0.14);
+
+      /* Text */
+      --text-on-dark: #F4F6FA;
+      --text-on-dark-muted: #8E98AD;
+      --text-on-cream: #14161D;
+      --text-on-cream-muted: #525663;
+
+      /* Accents */
+      --accent-primary: #F5A600;
+      --accent-primary-hover: #FFB81C;
+      --accent-secondary: #0C111E;
+      --cta-disabled-cream: #C4BCB0;
+
+      /* Semantic */
+      --status-ready: #1CA3C8;
+      --status-ready-bright: #29B6F6;
+      --status-success: #16B856;
+      --status-danger: #C61A1A;
+      --status-danger-text: #B71C1C;
+      --status-warning: #F5A600;
+
+      /* Rarity */
+      --rarity-common: #8B95A5;
+      --rarity-uncommon: #16B856;
+      --rarity-rare: #1D8FE1;
+      --rarity-epic: #D91E85;
+      --rarity-legendary: #F5A600;
+      --rarity-amplified: #FF6B00;
+      --rarity-blueprint: #1D4ED8;
+
+      /* Skill Tree */
+      --branch-conditioning: #00E65B;
+      --branch-mobility: #F5B800;
+      --branch-survival: #F01E1E;
+
+      /* Fonts */
+      --font-display: 'Urbanist', 'Prompt', sans-serif;
+      --font-tab: 'Urbanist', 'Prompt', sans-serif;
+      --font-body: 'Barlow', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    @property --arc-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @keyframes arc-border-spin {
+      to { --arc-angle: 360deg; }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg-canvas);
+      background-image: var(--bg-radial);
+      background-attachment: fixed;
+      color: var(--text-on-dark);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .tabular { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+    .font-display { font-family: var(--font-display); text-transform: uppercase; letter-spacing: -0.01em; }
+    .font-tab { font-family: var(--font-tab); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ARC 4-stripe signature */
+    .arc-stripes {
+      display: inline-flex;
+      gap: 3px;
+      transform: skewX(-22deg);
+      height: 22px;
+      align-items: stretch;
+    }
+    .arc-stripes span { width: 4px; border-radius: 1px; }
+    .arc-stripes .s1 { background: #E62E2D; }
+    .arc-stripes .s2 { background: #F5A600; }
+    .arc-stripes .s3 { background: #00C853; }
+    .arc-stripes .s4 { background: #00A8FF; }
+
+    /* Rotating Conic Hover Ring (detached by 2px transparent gap) */
+    .arc-hover-ring { position: relative; }
+    .arc-hover-ring::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      padding: 2px;
+      border-radius: inherit;
+      background: conic-gradient(
+        from var(--arc-angle),
+        #22d3ee, #3b82f6, #8b5cf6, #ec4899, #ff3b30, #ffaa00, #22c55e, #22d3ee
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    .arc-hover-ring:hover::before,
+    .arc-hover-ring:focus-visible::before,
+    .arc-hover-ring.is-always-on::before {
+      opacity: 1;
+      animation: arc-border-spin 2.5s linear infinite;
+    }
+
+    /* Hold-to-Confirm Clockwise Ring around the Keybind Box (detached by 2px gap) */
+    .arc-hold-btn {
+      position: relative;
+      --hold-deg: 0deg;
+    }
+    .keybind-hold {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      background: #14161D;
+      color: var(--accent-primary);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1;
+      margin-right: 4px;
+    }
+    .keybind-hold::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      padding: 1.5px;
+      border-radius: 7px;
+      background: rgba(20, 22, 29, 0.38);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .keybind-hold::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      padding: 2px;
+      border-radius: 7px;
+      background: conic-gradient(
+        from 0deg,
+        #14161D var(--hold-deg),
+        transparent 0deg
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .arc-hold-btn.is-holding .keybind-hold::after {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .arc-hover-ring:hover::before,
+      .arc-hover-ring:focus-visible::before,
+      .arc-hover-ring.is-always-on::before {
+        animation: none;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* Layout Shell */
+    .book-shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+      max-width: 1480px;
+      margin: 0 auto;
+    }
+
+    .book-sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 28px 20px;
+      border-right: 1px solid var(--border-subtle);
+      background: rgba(8, 12, 22, 0.72);
+      backdrop-filter: blur(12px);
+    }
+
+    .book-main {
+      padding: 32px 40px 96px;
+      min-width: 0;
+    }
+
+    @media (max-width: 960px) {
+      .book-shell { grid-template-columns: 1fr; }
+      .book-sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 16px 20px;
+      }
+      .book-main { padding: 24px 16px 72px; }
+    }
+
+    .toc-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 9999px;
+      color: var(--text-on-dark-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+    .toc-link:hover { color: var(--text-on-dark); background: rgba(255,255,255,0.05); }
+    .toc-link.active {
+      color: #fff;
+      border-color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.06);
+    }
+    .toc-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-primary);
+    }
+
+    /* Section & Cards */
+    .book-section {
+      padding-top: 48px;
+      margin-top: 48px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .book-section:first-of-type { padding-top: 0; margin-top: 0; border-top: none; }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: 4px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+    .section-desc {
+      color: var(--text-on-dark-muted);
+      margin: 0 0 24px;
+      max-width: 72ch;
+      font-size: 15px;
+    }
+
+    .panel-dark {
+      background: var(--surface-dark);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .grid-auto-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* Swatches */
+    .swatch {
+      background: var(--surface-slot);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px;
+      cursor: pointer;
+      transition: transform 0.12s ease, border-color 0.15s ease;
+    }
+    .swatch:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.3); }
+    .swatch:active { transform: scale(0.97); }
+    .swatch-color {
+      height: 56px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 10px;
+    }
+    .swatch-name { font-weight: 700; font-size: 13px; color: var(--text-on-dark); }
+    .swatch-hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-on-dark-muted); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 22px;
+      border-radius: 9999px;
+      font-family: var(--font-tab);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.12s ease, background-color 0.15s ease;
+      text-decoration: none;
+    }
+    .btn:active:not(:disabled) { transform: scale(0.96); }
+    .btn-primary { background: var(--accent-primary); color: #111318; }
+    .btn-primary:hover { background: var(--accent-primary-hover); }
+    .btn-secondary {
+      background: var(--accent-secondary);
+      color: var(--text-on-dark);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .btn-muted { background: #646B7A; color: #F4F6FA; }
+    .btn-disabled-cream {
+      background: var(--cta-disabled-cream);
+      color: #6B6A68;
+      cursor: not-allowed;
+    }
+
+    .keybind {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 7px;
+      min-width: 24px;
+      height: 22px;
+      border-radius: 5px;
+      background: var(--surface-cream);
+      color: var(--text-on-cream);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+    .keybind-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 5px;
+      border-radius: 5px;
+      background: transparent;
+      color: #14161D;
+      border: 1.5px solid #14161D;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    /* Top Nav Demo */
+    .nav-bar-demo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      background: rgba(8, 12, 22, 0.92);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+    }
+    .nav-pill {
+      padding: 7px 14px;
+      border-radius: 9999px;
+      font-family: var(--font-tab);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-on-dark-muted);
+      background: transparent;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+    }
+    .nav-pill.active {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    /* Item Slots & Rarity */
+    .item-slot {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 8px;
+      background: var(--surface-slot);
+      border: 1px solid rgba(var(--r-rgb), 0.65);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.12s ease, border-color 0.15s ease;
+    }
+    .item-slot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(var(--r-rgb), 0.30) 0%, transparent 58%);
+      pointer-events: none;
+    }
+    .item-slot:hover { border-color: rgba(var(--r-rgb), 1); transform: translateY(-2px); }
+    .item-slot.selected {
+      background: var(--surface-cream-bright);
+      border-color: #fff;
+    }
+    .item-slot .corner-tri {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 24px;
+      height: 24px;
+      background: rgb(var(--r-rgb));
+      clip-path: polygon(0 0, 0 100%, 100% 100%);
+      z-index: 2;
+    }
+    .item-slot .corner-icon {
+      position: absolute;
+      left: 3px;
+      bottom: 3px;
+      font-size: 10px;
+      color: #fff;
+      z-index: 3;
+      line-height: 1;
+    }
+    .item-slot .slot-qty {
+      position: absolute;
+      right: 6px;
+      bottom: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #F4F6FA;
+      z-index: 3;
+    }
+    .item-slot.selected .slot-qty { color: var(--text-on-cream); }
+
+    .bg-blueprint {
+      background-color: #0D1B4C;
+      background-image:
+        linear-gradient(rgba(59, 130, 246, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.25) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .bg-design-grid {
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.22) 1.2px, transparent 1.2px),
+        linear-gradient(to top, rgba(var(--r-rgb), 0.35) 0%, #182336 70%);
+      background-size: 18px 18px, 100% 100%;
+    }
+    .bg-amplified {
+      background: linear-gradient(135deg, rgba(255,107,0,0.22) 0%, #121829 60%);
+    }
+
+    /* Cream Detail Card */
+    .cream-card {
+      background: var(--surface-cream);
+      color: var(--text-on-cream);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+    .cream-card-top { padding: 20px; }
+    .cream-card-bottom {
+      background: var(--surface-cream-inset);
+      padding: 16px 20px 20px;
+      border-top: 1px solid var(--border-cream);
+    }
+    .dual-badge {
+      display: inline-flex;
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .dual-badge .cat { background: #3E434F; color: #fff; padding: 3px 8px; }
+    .dual-badge .rar { background: var(--rarity-epic); color: #fff; padding: 3px 8px; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 18px;
+      margin-top: 12px;
+      font-size: 12px;
+    }
+    .stat-bar-track {
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(20,22,29,0.16);
+      margin-top: 4px;
+      overflow: hidden;
+    }
+    .stat-bar-fill { height: 100%; background: var(--text-on-cream); border-radius: 999px; }
+
+    /* Progress Bars (Projects) */
+    .project-row {
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(14, 19, 34, 0.88);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .project-row.is-active {
+      background: var(--surface-cream);
+      color: var(--text-on-cream);
+      border-color: transparent;
+    }
+    .prog-track {
+      height: 6px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.15);
+      overflow: hidden;
+      flex: 1;
+    }
+    .project-row.is-active .prog-track { background: #C9BFAE; }
+    .prog-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: var(--status-ready);
+    }
+
+    /* Toast */
+    .arc-toast {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 18px 10px 10px;
+      background: var(--surface-dark);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+    }
+
+    /* Quest Actions */
+    .quest-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 14px;
+    }
+    .quest-chain {
+      margin-left: 8px;
+      padding-left: 16px;
+      border-left: 1.5px solid rgba(20, 22, 29, 0.25);
+      color: var(--text-on-cream-muted);
+    }
+    .quest-group-box {
+      background: var(--surface-cream-inset);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 6px;
+    }
+    .badge-in-round {
+      display: inline-block;
+      background: #14161D;
+      color: #fff;
+      font-family: var(--font-tab);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    /* Settings Controls */
+    .setting-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(14, 19, 34, 0.6);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .arc-slider {
+      appearance: none;
+      width: 140px;
+      height: 4px;
+      background: rgba(255,255,255,0.22);
+      border-radius: 999px;
+      outline: none;
+    }
+    .arc-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 8px;
+      height: 16px;
+      border-radius: 2px;
+      background: #D0D6E2;
+      cursor: pointer;
+    }
+
+    /* Segmented Toggle */
+    .seg-group {
+      display: inline-flex;
+      border: 1px solid rgba(20,22,29,0.28);
+      border-radius: 6px;
+      overflow: visible;
+    }
+    .seg-btn {
+      position: relative;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      background: transparent;
+      color: var(--text-on-cream);
+      border: none;
+      border-right: 1px solid rgba(20,22,29,0.18);
+      cursor: pointer;
+    }
+    .seg-btn:last-child { border-right: none; }
+    .seg-btn.active { background: rgba(20,22,29,0.08); }
+    .seg-btn.active::after {
+      content: '✓';
+      position: absolute;
+      left: -6px;
+      bottom: -6px;
+      width: 15px;
+      height: 15px;
+      border-radius: 9999px;
+      background: var(--accent-primary);
+      color: #111318;
+      font-size: 10px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 7, 14, 0.76);
+      backdrop-filter: blur(10px);
+      display: none;
+      place-items: center;
+      padding: 20px;
+      z-index: 100;
+    }
+    .modal-backdrop.open { display: grid; }
+    .modal-box {
+      width: 100%;
+      max-width: 460px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.7);
+    }
+
+    /* Live Floating Toast */
+    #liveToast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-120%);
+      z-index: 120;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #liveToast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <!-- Live Interactive Toast -->
+  <div id="liveToast" class="arc-toast" role="status" aria-live="polite">
+    <div class="item-slot" style="width:46px; --r-rgb: 22, 184, 86;">
+      <span style="font-size:20px;">🌿</span>
+      <span class="corner-tri"></span>
+      <span class="corner-icon">✦</span>
+      <span class="slot-qty">×5</span>
+    </div>
+    <div>
+      <div style="font-size:11px; letter-spacing:0.08em; color:var(--text-on-dark-muted); font-weight:700;">RESOURCE ADDED</div>
+      <div class="font-display" style="font-size:16px; font-weight:800;">CANDLEBERRIES</div>
+    </div>
+  </div>
+
+  <!-- Interactive Confirm Modal -->
+  <div id="demoModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div style="background:var(--surface-cream); color:var(--text-on-cream); padding:24px;">
+        <h3 id="modalTitle" class="font-display" style="margin:0 0 10px; font-size:22px; font-weight:800;">RESET YOUR SKILLS</h3>
+        <p style="margin:0 0 18px; font-size:14px; color:var(--text-on-cream-muted);">
+          Questo azzererà i punti allocati nello Skill Tree e li renderà nuovamente disponibili. Vuoi procedere?
+        </p>
+        <div style="border-top:1px solid var(--border-cream); padding-top:12px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--text-on-cream-muted); margin-bottom:6px;">PRICE</div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:20px;">🪙</span>
+            <div>
+              <div style="font-size:13px; font-weight:600;">Coins</div>
+              <div class="tabular" style="font-size:13px; color:var(--status-ready); font-weight:700;">182,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--accent-secondary); padding:16px 24px; display:flex; gap:12px;">
+        <button class="btn btn-muted" style="flex:1;" onclick="closeModal()">CANCEL</button>
+        <button class="btn btn-primary arc-hover-ring" style="flex:1;" onclick="closeModal(); triggerToast('SKILLS RESET', '91 POINTS')">CONFIRM &amp; RESET</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="book-shell">
+    <!-- Sidebar TOC -->
+    <aside class="book-sidebar">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+        <div class="arc-stripes" aria-hidden="true">
+          <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span>
+        </div>
+        <div>
+          <div class="font-display" style="font-size:17px; font-weight:800; line-height:1.1;">ARC RAIDERS</div>
+          <div style="font-size:11px; color:var(--text-on-dark-muted); letter-spacing:0.08em; text-transform:uppercase;">Design Book v1.0</div>
+        </div>
+      </div>
+      <p style="font-size:12px; color:var(--text-on-dark-muted); margin:0 0 20px;">
+        Estratto da 56 screenshot in-game &amp; Game Font Library per <strong>Scrappy's Nest</strong>.
+      </p>
+
+      <nav aria-label="Indice Design Book" style="display:flex; flex-direction:column; gap:4px;">
+        <a class="toc-link active" href="#foundations"><span class="toc-num">01</span> Fondamenta &amp; Palette</a>
+        <a class="toc-link" href="#typography"><span class="toc-num">02</span> Tipografia</a>
+        <a class="toc-link" href="#navigation"><span class="toc-num">03</span> Navigazione &amp; Shell</a>
+        <a class="toc-link" href="#buttons"><span class="toc-num">04</span> Bottoni &amp; Hover Conico</a>
+        <a class="toc-link" href="#rarity"><span class="toc-num">05</span> Rarità &amp; Slot Oggetti</a>
+        <a class="toc-link" href="#cards"><span class="toc-num">06</span> Schede Crema &amp; Crafting</a>
+        <a class="toc-link" href="#quests"><span class="toc-num">07</span> Quest, Research &amp; Skill</a>
+        <a class="toc-link" href="#feedback"><span class="toc-num">08</span> Modali, Toast &amp; Controlli</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="book-main">
+      <!-- Hero -->
+      <header style="margin-bottom:42px;">
+        <div style="display:inline-flex; align-items:center; gap:10px; padding:6px 14px; border-radius:9999px; border:1px solid var(--border-subtle); background:rgba(255,255,255,0.04); margin-bottom:14px;">
+          <span style="width:8px; height:8px; border-radius:999px; background:var(--status-success);"></span>
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; font-weight:600;">Specifica Interattiva • HDR→SDR Calibrated</span>
+        </div>
+        <h1 class="font-display" style="font-size:clamp(32px, 5vw, 48px); font-weight:800; margin:0 0 10px; line-height:1.05;">
+          SCRAPPY'S NEST — DESIGN BOOK
+        </h1>
+        <p style="color:var(--text-on-dark-muted); max-width:74ch; margin:0; font-size:16px;">
+          Sistema visivo completo ispirato a <em>ARC Raiders</em>: dualismo tra canvas tattico blu-notte e schede informative crema-pergamena, accenti ambra-oro, spettro conico su hover e adattamento touch-first mobile. Clicca su qualsiasi colore per copiarne il valore.
+        </p>
+      </header>
+
+      <!-- 01. Palette -->
+      <section id="foundations" class="book-section">
+        <div class="section-kicker">01 / Color System</div>
+        <h2 class="section-title">Superfici, Accenti &amp; Stati</h2>
+        <p class="section-desc">Clicca su uno swatch per copiare il codice hex/CSS negli appunti.</p>
+
+        <div class="grid-auto-3">
+          <div class="swatch" onclick="copyHex('#080C16')"><div class="swatch-color" style="background:#080C16;"></div><div class="swatch-name">Canvas Midnight</div><div class="swatch-hex">#080C16 • --bg-canvas</div></div>
+          <div class="swatch" onclick="copyHex('#0E1322')"><div class="swatch-color" style="background:#0E1322;"></div><div class="swatch-name">Surface Dark</div><div class="swatch-hex">#0E1322 • --surface-dark</div></div>
+          <div class="swatch" onclick="copyHex('#121829')"><div class="swatch-color" style="background:#121829;"></div><div class="swatch-name">Slot Base</div><div class="swatch-hex">#121829 • --surface-slot</div></div>
+          <div class="swatch" onclick="copyHex('#EAE0CE')"><div class="swatch-color" style="background:#EAE0CE;"></div><div class="swatch-name">Parchment Cream</div><div class="swatch-hex">#EAE0CE • --surface-cream</div></div>
+          <div class="swatch" onclick="copyHex('#D8CEBC')"><div class="swatch-color" style="background:#D8CEBC;"></div><div class="swatch-name">Cream Inset</div><div class="swatch-hex">#D8CEBC • --surface-cream-inset</div></div>
+          <div class="swatch" onclick="copyHex('#F5A600')"><div class="swatch-color" style="background:#F5A600;"></div><div class="swatch-name">Primary Amber CTA</div><div class="swatch-hex">#F5A600 • --accent-primary</div></div>
+          <div class="swatch" onclick="copyHex('#1CA3C8')"><div class="swatch-color" style="background:#1CA3C8;"></div><div class="swatch-name">Ready / Progress Cyan</div><div class="swatch-hex">#1CA3C8 • --status-ready</div></div>
+          <div class="swatch" onclick="copyHex('#C61A1A')"><div class="swatch-color" style="background:#C61A1A;"></div><div class="swatch-name">Danger / Locked Banner</div><div class="swatch-hex">#C61A1A • --status-danger</div></div>
+        </div>
+      </section>
+
+      <!-- 02. Typography -->
+      <section id="typography" class="book-section">
+        <div class="section-kicker">02 / Typography</div>
+        <h2 class="section-title">Gerarchia Tipografica</h2>
+        <p class="section-desc">Basata su Game Font Library: <code>Urbanist</code> &amp; <code>Prompt</code> per titoli, <code>Barlow</code> per body/UI, <code>JetBrains Mono</code> con <code>tabular-nums</code> per contatori e timer.</p>
+
+        <div class="panel-dark" style="display:flex; flex-direction:column; gap:18px;">
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+            <span class="font-display" style="font-size:32px; font-weight:800;">FLICKERING FLAMES</span>
+            <span class="tabular" style="font-size:12px; color:var(--text-on-dark-muted);">Urbanist / Prompt • 800 • Uppercase • -0.01em</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+            <span class="font-tab" style="font-size:15px; font-weight:700;">WORKSHOP — UTILITY STATION III</span>
+            <span class="tabular" style="font-size:12px; color:var(--text-on-dark-muted);">Tab / Breadcrumb • 700 • +0.06em</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+            <span style="font-size:15px; font-weight:500;">Used to craft weapon mods. Can be recycled into crafting materials.</span>
+            <span class="tabular" style="font-size:12px; color:var(--text-on-dark-muted);">Barlow • 400/500 • Body UI</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline;">
+            <span class="tabular" style="font-size:20px; font-weight:700; color:var(--status-ready-bright);">955,156 • 12/2 • 57:18</span>
+            <span class="tabular" style="font-size:12px; color:var(--text-on-dark-muted);">JetBrains Mono • tabular-nums</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03. Navigation -->
+      <section id="navigation" class="book-section">
+        <div class="section-kicker">03 / Navigation &amp; Shell</div>
+        <h2 class="section-title">Top Bar, Pill Tabs &amp; Keybinds</h2>
+        <p class="section-desc">Le tab attive usano un bordo bianco da <code>1.5px</code> a pillola piena. Clicca sulle tab per testare lo stato attivo.</p>
+
+        <div class="nav-bar-demo" id="demoNavBar">
+          <div class="arc-stripes" aria-hidden="true" style="margin-right:8px;">
+            <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span>
+          </div>
+          <button class="nav-pill active" onclick="selectNavPill(this)">STASH</button>
+          <button class="nav-pill" onclick="selectNavPill(this)">BANCHI &amp; LISTE</button>
+          <button class="nav-pill" onclick="selectNavPill(this)">RAID PLAN</button>
+          <button class="nav-pill" onclick="selectNavPill(this)">COLLEZIONI</button>
+          <button class="nav-pill" onclick="selectNavPill(this)">SKILL TREE</button>
+          <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+            <span class="tabular" style="font-size:13px; font-weight:700;">🪙 955,156</span>
+            <span class="keybind">TAB</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. Buttons & Conic Hover -->
+      <section id="buttons" class="book-section">
+        <div class="section-kicker">04 / Interactive Actions</div>
+        <h2 class="section-title">Bottoni &amp; Effetto Hover Conico ARC</h2>
+        <p class="section-desc">Passa il cursore su <code>arc-hover-ring</code> per il bordo conico staccato di <code>2px</code>. <strong>Tieni premuto</strong> su <code>E CRAFT</code> per vedere il bordo esterno del tasto <code>E</code> riempirsi in senso orario.</p>
+
+        <div class="panel-dark" style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+          <button class="btn btn-primary arc-hold-btn" data-hold-title="LOOTING MK. 1" data-hold-kicker="CRAFTED"><span class="keybind-hold">E</span> CRAFT</button>
+          <button class="btn btn-secondary arc-hover-ring">TRACK RESOURCES</button>
+          <button class="btn btn-secondary arc-hover-ring is-always-on">HOVER PREVIEW (ACTIVE)</button>
+          <button class="btn btn-muted">CANCEL</button>
+          <button class="btn btn-disabled-cream" disabled>IN PROGRESS</button>
+        </div>
+      </section>
+
+      <!-- 05. Rarity & Slots -->
+      <section id="rarity" class="book-section">
+        <div class="section-kicker">05 / Item System</div>
+        <h2 class="section-title">Rarità, Triangolo d'Angolo &amp; Sfondi Speciali</h2>
+        <p class="section-desc">Tutte le varianti di slot estratte dal gioco: 5 rarità standard, <strong>Amplified</strong>, <strong>Blueprint</strong> (griglia blu) e <strong>Design</strong> (griglia di crocette).</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(112px, 1fr)); gap:12px;">
+          <div>
+            <div class="item-slot arc-hover-ring" style="--r-rgb: 139, 149, 165;"><span>🔩</span><span class="corner-tri"></span><span class="corner-icon">🔧</span><span class="slot-qty">×50</span></div>
+            <div style="font-size:12px; text-align:center; margin-top:6px; color:var(--text-on-dark-muted);">Common</div>
+          </div>
+          <div>
+            <div class="item-slot arc-hover-ring" style="--r-rgb: 22, 184, 86;"><span>🧪</span><span class="corner-tri"></span><span class="corner-icon">➕</span><span class="slot-qty">×10</span></div>
+            <div style="font-size:12px; text-align:center; margin-top:6px; color:var(--rarity-uncommon);">Uncommon</div>
+          </div>
+          <div>
+            <div class="item-slot arc-hover-ring" style="--r-rgb: 29, 143, 225;"><span>🔋</span><span class="corner-tri"></span><span class="corner-icon">⚡</span><span class="slot-qty">×5</span></div>
+            <div style="font-size:12px; text-align:center; margin-top:6px; color:var(--rarity-rare);">Rare</div>
+          </div>
+          <div>
+            <div class="item-slot arc-hover-ring" style="--r-rgb: 217, 30, 133;"><span>🧲</span><span class="corner-tri"></span><span class="corner-icon">🔧</span><span class="slot-qty">×2</span></div>
+            <div style="font-size:12px; text-align:center; margin-top:6px; color:var(--rarity-epic);">Epic</div>
+          </div>
+          <div>
+            <div class="item-slot arc-hover-ring" style="--r-rgb: 245, 166, 0;"><span>🪝</span><span class="corner-tri"></span><span class="corner-icon">✦</span><span class="slot-qty">×1</span></div>
+            <div style="font-size:12px; text-align:center; margin-top:6px; color:var(--rarity-legendary);">Legendary</div>
+          </div>
+          <div>
+            <div class="item-slot bg-amplified arc-hover-ring" style="--r-rgb: 255, 107, 0;"><span>🔫</span><span class="corner-tri"></span><span class="corner-icon">⚡</span><span class="slot-qty">IV</span></div>
+            <div style="font-size:12px; text-align:center; margin-top:6px; color:var(--rarity-amplified);">Amplified</div>
+          </div>
+          <div>
+            <div class="item-slot bg-blueprint arc-hover-ring" style="--r-rgb: 59, 130, 246;"><span>📦</span><span class="corner-tri" style="background:#fff;"></span><span class="corner-icon" style="color:#0D1B4C;">📖</span><span class="slot-qty">✓</span></div>
+            <div style="font-size:12px; text-align:center; margin-top:6px; color:#60A5FA;">Blueprint</div>
+          </div>
+          <div>
+            <div class="item-slot bg-design-grid arc-hover-ring" style="--r-rgb: 217, 30, 133;"><span>🪴</span><span class="corner-tri"></span><span class="corner-icon">🛋</span><span class="slot-qty">✓</span></div>
+            <div style="font-size:12px; text-align:center; margin-top:6px; color:#F472B6;">Design</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06. Cream Cards & Project Progress -->
+      <section id="cards" class="book-section">
+        <div class="section-kicker">06 / Detail Panels &amp; Progress</div>
+        <h2 class="section-title">Scheda Dettaglio Crema &amp; Consegna Progetti</h2>
+        <p class="section-desc">La scheda a 2 fasce per crafting/upgrade e le righe di consegna materiali con barra ciano/teal (scura vs selezionata crema).</p>
+
+        <div class="grid-2">
+          <!-- Cream Detail Card -->
+          <div class="cream-card">
+            <div class="cream-card-top">
+              <div class="dual-badge"><span class="cat">REFINED MATERIAL</span><span class="rar">EPIC</span></div>
+              <h3 class="font-display" style="margin:0 0 6px; font-size:22px; font-weight:800;">MAGNETIC ACCELERATOR</h3>
+              <p style="margin:0; font-size:13px; color:var(--text-on-cream-muted);">Used to craft advanced weapons.</p>
+              <div class="stat-row">
+                <div><div style="display:flex; justify-content:space-between;"><span>Durability</span><span class="tabular">100/100</span></div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:100%;"></div></div></div>
+                <div><div style="display:flex; justify-content:space-between;"><span>Stability</span><span class="tabular">82%</span></div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:82%;"></div></div></div>
+              </div>
+            </div>
+            <div class="cream-card-bottom">
+              <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--text-on-cream-muted); margin-bottom:10px;">REQUIRED RESOURCES</div>
+              <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+                <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600;">
+                  <span>Adv. Mechanical Components</span>
+                  <span class="tabular" style="color:var(--status-danger-text);">0/2</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600;">
+                  <span>ARC Motion Core</span>
+                  <span class="tabular" style="color:var(--status-ready);">30/2</span>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:14px;">
+                <button class="btn btn-secondary" style="min-height:34px; width:34px; padding:0;" onclick="stepQty(-1)">−</button>
+                <span id="qtyVal" class="tabular" style="background:rgba(20,22,29,0.12); padding:6px 18px; border-radius:6px; font-weight:700;">×1</span>
+                <button class="btn btn-secondary" style="min-height:34px; width:34px; padding:0;" onclick="stepQty(1)">+</button>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <button class="btn btn-secondary arc-hover-ring" style="width:100%;">TRACK RESOURCES</button>
+                <button class="btn btn-primary arc-hold-btn" style="width:100%;" data-hold-title="LOOTING MK. 1" data-hold-kicker="CRAFTED"><span class="keybind-hold">E</span> CRAFT</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Progress Bars -->
+          <div class="panel-dark" style="display:flex; flex-direction:column; gap:10px;">
+            <div style="font-size:12px; letter-spacing:0.08em; color:var(--text-on-dark-muted); font-weight:700; margin-bottom:4px;">BANQUET BASICS — PROGRESSO CONSEGNA</div>
+            <div class="project-row">
+              <div class="item-slot" style="width:48px; flex-shrink:0; --r-rgb: 22,184,86;"><span>🧶</span><span class="corner-tri"></span><span class="slot-qty">×107</span></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-size:13px; font-weight:700; margin-bottom:6px;">DURABLE CLOTH</div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="prog-track"><div class="prog-fill" style="width:100%;"></div></div>
+                  <span class="tabular" style="font-size:12px; color:var(--status-ready-bright); font-weight:700;">10/10</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-row">
+              <div class="item-slot" style="width:48px; flex-shrink:0; --r-rgb: 22,184,86;"><span>🔋</span><span class="corner-tri"></span><span class="slot-qty">×52</span></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-size:13px; font-weight:700; margin-bottom:6px;">BATTERY</div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="prog-track"><div class="prog-fill" style="width:50%;"></div></div>
+                  <span class="tabular" style="font-size:12px; color:var(--text-on-dark-muted);">5/10</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-row is-active">
+              <div class="item-slot" style="width:48px; flex-shrink:0; --r-rgb: 29,143,225;"><span>🌿</span><span class="corner-tri"></span><span class="slot-qty">×3</span></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-size:13px; font-weight:800; margin-bottom:6px;">CANDLEBERRIES (SELEZIONATA)</div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="prog-track"><div class="prog-fill" style="width:100%;"></div></div>
+                  <span class="tabular" style="font-size:12px; color:#0E87A8; font-weight:700;">5/5</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07. Quests, Research & Skill Tree -->
+      <section id="quests" class="book-section">
+        <div class="section-kicker">07 / Quests &amp; Progression</div>
+        <h2 class="section-title">Azioni Quest, Research &amp; Skill Tree</h2>
+        <p class="section-desc">Tutte le varianti di obiettivi estratte dai mercanti (<code>IN ONE ROUND</code>, concatenate, annidate, opzionali) e gli stati della Research Station.</p>
+
+        <div class="grid-2">
+          <!-- Quest Actions -->
+          <div class="cream-card">
+            <div class="cream-card-top">
+              <span class="badge-in-round">IN ONE ROUND</span>
+              <div class="quest-step"><span>◉</span><span><strong>(Optional)</strong> Acquire an Emperor Gateway Conduit</span></div>
+              <div class="quest-step"><input type="checkbox" checked /><span>Destroy the Power Cores on top of the Frigate</span></div>
+              <div class="quest-step"><input type="checkbox" /><span>Find a way to access the Frigate's cargo</span></div>
+              <div class="quest-chain">
+                <div class="quest-step"><input type="checkbox" disabled /><span>Loot the Frigate's cargo (sbloccato dopo)</span></div>
+              </div>
+              <div class="quest-group-box">
+                <div class="quest-step" style="padding:2px 0;"><input type="checkbox" checked /><span>Search 5 containers inside the Emperor</span></div>
+                <div class="quest-step" style="padding:2px 0;"><input type="checkbox" /><span>Obtain a unique piece of Emperor loot</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Research Card + Skill Tree -->
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="cream-card">
+              <div style="background:var(--accent-primary); color:#111318; padding:10px 16px; display:flex; justify-content:space-between; align-items:center; font-weight:800; font-size:13px;">
+                <span>‹</span><span>🔒 STEP 2/2</span><span>›</span>
+              </div>
+              <div class="cream-card-top" style="padding:16px 20px;">
+                <h4 class="font-display" style="margin:0 0 4px; font-size:18px;">SHIELD STRESS TESTING</h4>
+                <p style="margin:0; font-size:13px; color:var(--text-on-cream-muted);">Sustained damage could reveal what makes a shield give out.</p>
+              </div>
+              <div style="background:var(--status-danger); color:#fff; text-align:center; padding:8px 12px; font-size:12px; font-weight:700;">
+                Fulfil the previous step to complete this research
+              </div>
+            </div>
+
+            <div class="panel-dark" style="display:flex; justify-content:space-around; align-items:center; padding:20px;">
+              <div style="text-align:center;">
+                <div style="width:46px; height:46px; border-radius:999px; background:var(--branch-conditioning); color:#080C16; display:grid; place-items:center; font-weight:800; margin:0 auto 6px;">31</div>
+                <div style="font-size:11px; color:var(--branch-conditioning); font-weight:700;">CONDITIONING</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="width:46px; height:46px; border-radius:999px; background:var(--branch-mobility); color:#080C16; display:grid; place-items:center; font-weight:800; margin:0 auto 6px;">42</div>
+                <div style="font-size:11px; color:var(--branch-mobility); font-weight:700;">MOBILITY</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="width:46px; height:46px; border-radius:999px; background:var(--branch-survival); color:#fff; display:grid; place-items:center; font-weight:800; margin:0 auto 6px;">18</div>
+                <div style="font-size:11px; color:var(--branch-survival); font-weight:700;">SURVIVAL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08. Modals, Toast & Settings Controls -->
+      <section id="feedback" class="book-section">
+        <div class="section-kicker">08 / Modals, Toasts &amp; Controls</div>
+        <h2 class="section-title">Modali, Alert di Consegna &amp; Controlli Impostazioni</h2>
+        <p class="section-desc">Testa dal vivo il modale di conferma, il toast <code>RESOURCE ADDED</code>, i toggle segmentati e le righe a pillola delle impostazioni.</p>
+
+        <div class="grid-2">
+          <div class="panel-dark">
+            <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;">
+              <button class="btn btn-primary arc-hover-ring" onclick="openModal()">APRI MODALE CONFERMA</button>
+              <button class="btn btn-secondary arc-hover-ring" onclick="triggerToast('RESOURCE ADDED', 'CANDLEBERRIES')">MOSTRA TOAST CONSEGNA</button>
+            </div>
+            <div style="background:var(--surface-cream); color:var(--text-on-cream); padding:16px; border-radius:12px;">
+              <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--text-on-cream-muted); margin-bottom:8px;">SEGMENTED TOGGLE (HELMET)</div>
+              <div class="seg-group">
+                <button class="seg-btn" onclick="selectSeg(this)">ON</button>
+                <button class="seg-btn" onclick="selectSeg(this)">OPEN</button>
+                <button class="seg-btn active" onclick="selectSeg(this)">OFF</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-dark">
+            <div class="setting-pill">
+              <span>HUD Visibility</span>
+              <span class="tabular" style="font-size:12px; font-weight:700;">‹ DEFAULT ›</span>
+            </div>
+            <div class="setting-pill">
+              <span>Master Volume</span>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span id="volVal" class="tabular" style="font-size:12px;">75%</span>
+                <input class="arc-slider" type="range" min="0" max="100" value="75" oninput="document.getElementById('volVal').textContent=this.value+'%'" />
+              </div>
+            </div>
+            <div class="setting-pill" style="margin-bottom:0;">
+              <span>Loot Zone Legend</span>
+              <div style="display:flex; gap:12px; font-size:12px; font-weight:700;">
+                <span style="color:#EF5350;">■ HIGH</span>
+                <span style="color:#F5A600;">■ MEDIUM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    let qty = 1;
+    function stepQty(delta) {
+      qty = Math.max(1, qty + delta);
+      document.getElementById('qtyVal').textContent = '×' + qty;
+    }
+    function selectNavPill(el) {
+      document.querySelectorAll('#demoNavBar .nav-pill').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+    }
+    function selectSeg(el) {
+      el.parentElement.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+    }
+    function openModal() { document.getElementById('demoModal').classList.add('open'); }
+    function closeModal() { document.getElementById('demoModal').classList.remove('open'); }
+    let toastTimer;
+    function triggerToast(kicker, title) {
+      const t = document.getElementById('liveToast');
+      t.querySelector('div > div:first-child').textContent = kicker;
+      t.querySelector('.font-display').textContent = title;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+    }
+    function copyHex(val) {
+      navigator.clipboard?.writeText(val);
+      triggerToast('COPIED TO CLIPBOARD', val);
+    }
+    // Hold-to-Confirm clockwise perimeter fill (600ms)
+    document.querySelectorAll('.arc-hold-btn').forEach(btn => {
+      let rafId = null;
+      let start = 0;
+      const duration = 600;
+      const stopHold = () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = null;
+        btn.classList.remove('is-holding');
+        btn.style.setProperty('--hold-deg', '0deg');
+      };
+      const tick = (now) => {
+        const pct = Math.min(1, (now - start) / duration);
+        btn.style.setProperty('--hold-deg', (pct * 360) + 'deg');
+        if (pct >= 1) {
+          stopHold();
+          triggerToast(btn.dataset.holdKicker || 'CRAFTED', btn.dataset.holdTitle || 'ITEM');
+        } else {
+          rafId = requestAnimationFrame(tick);
+        }
+      };
+      btn.addEventListener('pointerdown', () => {
+        start = performance.now();
+        btn.classList.add('is-holding');
+        rafId = requestAnimationFrame(tick);
+      });
+      ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => btn.addEventListener(ev, stopHold));
+    });
+    // Highlight active TOC link on scroll
+    const links = document.querySelectorAll('.toc-link');
+    const sections = [...links].map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY + 140;
+      let current = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) current = s.id;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+    }, { passive: true });
+  </script>
+</body>
+</html>

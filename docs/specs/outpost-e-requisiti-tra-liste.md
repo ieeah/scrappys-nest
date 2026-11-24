@@ -34,6 +34,11 @@ L'Outpost può salire con la Research Station a 0: nessun vincolo in senso inver
 - **Pagina di dettaglio**: chip su ogni livello e gli stessi controlli sul selettore del livello corrente.
 - **Dev**: editor «Requisiti su altre liste» per ogni livello in Gestione Liste.
 
+## 4.1 Evoluzione Architetturale & Decisione sul Nuovo Portale
+In sede di revisione architetturale per il portale Next.js (2026-11-24, vedi [architettura-pagine-e-navigazione.md](architettura-pagine-e-navigazione.md)), sono state valutate due opzioni per l'Outpost:
+1. **Opzione A (Adottata):** L'Outpost non ha una pagina autonoma a sé stante; vive come lista primaria a livelli all'interno di **Banchi e Liste** (`/lists`), conservando la logica dei requisiti a cascata (`requires`) già implementata.
+2. **Opzione B (Prospettiva post-rework Spedizioni):** In attesa del rework ufficiale delle Spedizioni (previsto a inizio 2027), se le meccaniche di gioco collegheranno l'Outpost al ciclo stagionale temporaneo di estrazione/wipe, l'Outpost potrà essere promosso a macro-wrapper del rifugio temporaneo, isolando i progressi stagionali da quelli permanenti.
+
 ## 5. Fuori scope
 - **Weapon Amplification** (WA1, WA2): decisione del 2026-10-11, sarà una **pagina informativa** (come funzionano le armi, amplificazioni possibili e costi per arma, i due gate), **senza tracker** né stato per arma: niente `weapon_tier` né perk salvati. Vedi #92.
 - **Research Bench** (15 nodi `Research`) e **arredi** (69 `Furniture`, 100 `Design`): restano in #87. Gli arredi saranno solo informativi nella pagina dell'Outpost (#116). In Collezioni → Arredamento (#91) si terrà traccia dei **design trovati**, come per i blueprint; **non** degli arredi attivi nell'Outpost.

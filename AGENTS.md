@@ -84,6 +84,7 @@ Il progetto adotta la convenzione **layered-docs**: file sintetici in radice per
 - [docs/specs/in-raid-actions-architecture.md](docs/specs/in-raid-actions-architecture.md) — Architettura componibile delle azioni in-raid (fasi, scaglioni, unico raid, bivi).
 - [docs/specs/gameplay-tips-and-strategies.md](docs/specs/gameplay-tips-and-strategies.md) — Suggerimenti e strategie per la gestione delle risorse di gioco.
 - [docs/specs/schema-postgres-e-seed-era2.md](docs/specs/schema-postgres-e-seed-era2.md) — Specifica tecnica Era 2→3: validatore dataset, schema Postgres e seed idempotente.
+- [docs/specs/architettura-pagine-e-navigazione.md](docs/specs/architettura-pagine-e-navigazione.md) — Architettura delle pagine, domini semantici e navigazione (Next.js & Supabase).
 
 ### Decisioni Architetturali (`docs/adrs/`)
 - [docs/adrs/001-zustand-senza-middleware-persist.md](docs/adrs/001-zustand-senza-middleware-persist.md) — Rimoziome middleware persist nativo.

@@ -2858,6 +2858,19 @@
       }
     }
   },
+  "bandit-backpack": {
+    "id": "bandit-backpack",
+    "name": "Bandit (Backpack)",
+    "description": "",
+    "icon": "icons/items/bandit-backpack.webp",
+    "rarity": "Common",
+    "item_type": "Cosmetic",
+    "subcategory": "Backpack",
+    "value": null,
+    "workbench": null,
+    "loot_area": null,
+    "stack_size": null
+  },
   "banjo": {
     "id": "banjo",
     "name": "Banjo",
@@ -13377,6 +13390,19 @@
     "loot_area": "",
     "stack_size": null
   },
+  "golden-olive-stencil": {
+    "id": "golden-olive-stencil",
+    "name": "Golden Olive Stencil",
+    "description": "",
+    "icon": "icons/items/golden-olive-stencil.webp",
+    "rarity": "Uncommon",
+    "item_type": "Stencil",
+    "subcategory": null,
+    "value": 5000,
+    "workbench": null,
+    "loot_area": null,
+    "stack_size": null
+  },
   "gothic-graffiti-aviator-color": {
     "id": "gothic-graffiti-aviator-color",
     "name": "Gothic Graffiti (Aviator Color)",
@@ -15466,6 +15492,19 @@
       }
     }
   },
+  "malocchio-stencil": {
+    "id": "malocchio-stencil",
+    "name": "Malocchio Stencil",
+    "description": "",
+    "icon": "icons/items/malocchio-stencil.webp",
+    "rarity": "Epic",
+    "item_type": "Stencil",
+    "subcategory": null,
+    "value": 5000,
+    "workbench": null,
+    "loot_area": null,
+    "stack_size": null
+  },
   "marano-market-buisness-card": {
     "id": "marano-market-buisness-card",
     "name": "Marano Market Business Card",
@@ -16089,6 +16128,19 @@
     "name": "Nascosto (Outfit)",
     "description": "",
     "icon": "icons/items/nascosto-outfit.webp",
+    "rarity": "Common",
+    "item_type": "Outfits",
+    "subcategory": "Outfit",
+    "value": null,
+    "workbench": null,
+    "loot_area": null,
+    "stack_size": null
+  },
+  "nessuno-outfit": {
+    "id": "nessuno-outfit",
+    "name": "Nessuno (Outfit)",
+    "description": "",
+    "icon": "icons/items/nessuno-outfit.webp",
     "rarity": "Common",
     "item_type": "Outfits",
     "subcategory": "Outfit",
@@ -17758,6 +17810,19 @@
         "description": "Una mina attivata dalla prossimità che salta fuori e respinge tutto nel suo raggio."
       }
     }
+  },
+  "pump-oiler-backpack-charm": {
+    "id": "pump-oiler-backpack-charm",
+    "name": "Pump Oiler (Backpack Charm)",
+    "description": "",
+    "icon": "icons/items/pump-oiler-backpack-charm.webp",
+    "rarity": "Common",
+    "item_type": "Cosmetic",
+    "subcategory": "Backpack Charm",
+    "value": null,
+    "workbench": null,
+    "loot_area": null,
+    "stack_size": null
   },
   "purple-glam-face-style": {
     "id": "purple-glam-face-style",
@@ -21622,6 +21687,19 @@
     "loot_area": "",
     "stack_size": null
   },
+  "sundog-stencil": {
+    "id": "sundog-stencil",
+    "name": "Sundog Stencil",
+    "description": "",
+    "icon": "icons/items/sundog-stencil.webp",
+    "rarity": "Legendary",
+    "item_type": "Stencil",
+    "subcategory": null,
+    "value": 5000,
+    "workbench": null,
+    "loot_area": null,
+    "stack_size": null
+  },
   "surge-coil": {
     "id": "surge-coil",
     "name": "Surge Coil",
@@ -21932,6 +22010,19 @@
         "description": "Si può riciclare in stoffa."
       }
     }
+  },
+  "taurus-stencil": {
+    "id": "taurus-stencil",
+    "name": "Taurus Stencil",
+    "description": "",
+    "icon": "icons/items/taurus-stencil.webp",
+    "rarity": "Epic",
+    "item_type": "Stencil",
+    "subcategory": null,
+    "value": 5000,
+    "workbench": null,
+    "loot_area": null,
+    "stack_size": null
   },
   "telemetry-transceiver": {
     "id": "telemetry-transceiver",

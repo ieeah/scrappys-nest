@@ -44,19 +44,29 @@ async function processIconBuffer(originalBuffer) {
   return normalized;
 }
 
+async function fetchWithRetry(url, retries = 3, delayMs = 1000) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(url, {
+        headers: {
+          'User-Agent': 'ARCBenchesCompanion/1.0 (https://github.com/ieeah/scrappys-nest)',
+        },
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res;
+    } catch (err) {
+      if (attempt === retries) throw err;
+      console.warn(`  [Retry ${attempt}/${retries}] Errore download ${url}: ${err.message}. Attendo ${delayMs}ms...`);
+      await new Promise(r => setTimeout(r, delayMs));
+    }
+  }
+}
+
 async function main() {
   console.log('Fetching Category Icons from ARC Raiders Wiki API...');
   mkdirSync(OUT_DIR, { recursive: true });
 
-  const res = await fetch(WIKI_API_URL, {
-    headers: {
-      'User-Agent': 'ARCBenchesCompanion/1.0 (https://github.com/ieeah/scrappys-nest)',
-    },
-  });
-
-  if (!res.ok) {
-    throw new Error(`Failed to query Wiki API: HTTP ${res.status}`);
-  }
+  const res = await fetchWithRetry(WIKI_API_URL);
 
   const json = await res.json();
   const pages = Object.values(json.query?.pages ?? {});
@@ -77,22 +87,19 @@ async function main() {
     const destPath = join(OUT_DIR, `${slug}.webp`);
     console.log(`  Downloading ${title} -> ${slug}.webp...`);
 
-    const imgRes = await fetch(info.url, {
-      headers: {
-        'User-Agent': 'ARCBenchesCompanion/1.0 (https://github.com/ieeah/scrappys-nest)',
-      },
-    });
-
-    if (!imgRes.ok) {
-      console.error(`  Failed to download ${info.url}: HTTP ${imgRes.status}`);
+    let originalBuffer;
+    try {
+      const imgRes = await fetchWithRetry(info.url, 3, 1500);
+      const arrayBuffer = await imgRes.arrayBuffer();
+      originalBuffer = Buffer.from(arrayBuffer);
+    } catch (err) {
+      console.error(`  Failed to download ${info.url}: ${err.message}`);
       continue;
     }
 
-    const arrayBuffer = await imgRes.arrayBuffer();
-    const originalBuffer = Buffer.from(arrayBuffer);
-
     const optimized = await processIconBuffer(originalBuffer);
     writeFileSync(destPath, optimized);
+    await new Promise(r => setTimeout(r, 100));
 
     manifest[slug] = {
       title,

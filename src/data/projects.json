@@ -998,10 +998,19 @@
           "actions": [
             {
               "id": "c9e4b535-3bba-422a-a1c6-defbb7c62632",
-              "label": "Heal 3 Raiders outside your squad or deal 800 damage to fire-wielding ARC",
+              "label": "Heal 3 unique Raiders outside your squad",
               "translations": {
                 "it": {
-                  "label": "Cura 3 Raider al di fuori della tua squadra o infliggi 800 danni agli ARC che utilizzano il fuoco"
+                  "label": "Cura 3 Raider differenti al di fuori della tua squadra"
+                }
+              }
+            },
+            {
+              "id": "5a16392f-8cc8-4439-9a9b-34ad17e0d551",
+              "label": "Deal 800 damage to fire-wielding ARC (Vaporizer, Firefly, Fireball)",
+              "translations": {
+                "it": {
+                  "label": "Infliggi 800 danni ad ARC che utilizzano il fuoco (Vaporizer, Firefly, Fireball)"
                 }
               }
             }
